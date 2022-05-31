@@ -8,6 +8,10 @@ namespace TriFighter {
 
         private Vector3 _mousePosition;
         public Vector3 MousePosition => _mousePosition;
+
+        private bool _mouseButtonLeft;
+        public bool MouseButtonLeft => _mouseButtonLeft;
+
         public ISubscriber EventQueue { get; private set; }
 
         public void Update() {

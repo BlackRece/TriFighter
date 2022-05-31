@@ -74,7 +74,7 @@ namespace TriFighter {
             if (!MouseHandler.GetActiveState) 
                 return _targetPosition;
             
-            var nextPosition = TargetChecker.MouseWorldPosition;
+            var nextPosition = CameraController.MouseWorldPosition;
             nextPosition.z = 0f;
             return nextPosition;
         }

@@ -17,7 +17,7 @@ namespace TriFighter {
         }
 
         private Vector3 GetRandomSpawnPosition() {
-            var worldRect = TargetChecker.PlayArea;
+            var worldRect = CameraController.PlayArea;
 
             return new Vector3(
                 worldRect.xMax,

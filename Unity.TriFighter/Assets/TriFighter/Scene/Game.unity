@@ -2125,11 +2125,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1418546205}
     m_Modifications:
-    - target: {fileID: 3975325290304199375, guid: 00ce0d6020afa294a837e320fbe5c7eb,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3980327725172709102, guid: 00ce0d6020afa294a837e320fbe5c7eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2198,30 +2193,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1060586037}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1060586039 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4799682378291154720, guid: 00ce0d6020afa294a837e320fbe5c7eb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1060586037}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1060586040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060586039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa4f5e54372ab104e999b26778f773af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _aiInputController: {fileID: 11400000, guid: cadc3280588ebac42b71143a541bd0ff, type: 2}
-  _aiCursorController: {fileID: 11400000, guid: 5022fd72f1f3df94c8f74f6fbdce17d5,
-    type: 2}
-  DEBUG_Mouse: {x: 0, y: 0, z: 0}
-  DEBUG_Cursor: {x: 0, y: 0, z: 0}
-  DEBUG_Cam: {x: 0, y: 0, z: 0}
 --- !u!1 &1068388935
 GameObject:
   m_ObjectHideFlags: 0

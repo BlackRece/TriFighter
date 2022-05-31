@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8734871494213234487}
   - component: {fileID: 4195670330252156167}
   - component: {fileID: 3975325290304199375}
+  - component: {fileID: 616340842527575741}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemies
@@ -103,8 +104,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4799682378291154720}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79ca9d7f02a34f03918a4ea5fd336053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &616340842527575741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4799682378291154720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4f5e54372ab104e999b26778f773af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aiInputController: {fileID: 11400000, guid: cadc3280588ebac42b71143a541bd0ff, type: 2}
+  _aiCursorController: {fileID: 11400000, guid: 5022fd72f1f3df94c8f74f6fbdce17d5,
+    type: 2}
+  _bulletPrefab: {fileID: 2872568730295086808, guid: f51c62f4bdb7240468d6e55dbe574764,
+    type: 3}
+  DEBUG_Mouse: {x: 0, y: 0, z: 0}
+  DEBUG_Cursor: {x: 0, y: 0, z: 0}
+  DEBUG_Cam: {x: 0, y: 0, z: 0}

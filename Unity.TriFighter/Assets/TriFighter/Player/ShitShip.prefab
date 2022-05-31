@@ -105,7 +105,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6636848456769095283}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -127,3 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _aiInputController: {fileID: 0}
   _aiCursorController: {fileID: 0}
+  _bulletPrefab: {fileID: 2872568730295086808, guid: f51c62f4bdb7240468d6e55dbe574764,
+    type: 3}
+  DEBUG_Mouse: {x: 0, y: 0, z: 0}
+  DEBUG_Cursor: {x: 0, y: 0, z: 0}
+  DEBUG_Cam: {x: 0, y: 0, z: 0}
