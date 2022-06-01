@@ -6,9 +6,8 @@ namespace BlackRece.Events {
             new List<IGameEventListener<T>>();
 
         public void Raise(T item) {
-            for (int i = gameEventListeners.Count - 1; i >= 0; i--) {
+            for (var i = gameEventListeners.Count - 1; i >= 0; i--) 
                 gameEventListeners[i].OnEventRaised(item);
-            }
         }
 
         public void RegisterListener(IGameEventListener<T> listener) {

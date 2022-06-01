@@ -5,10 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c70a6ea2-1b5b-470c-a40f-6701a3c709bd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scripts/MainMenu.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scripts/MainMenu.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/SceneManager.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/SceneManager.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/TitleMenu.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/TitleMenu/StartGameEvent.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/TitleMenu/StartGameEvent.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/TitleMenu/Title.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/TitleMenu/Title.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scripts/SceneManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scripts/SceneManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity.TriFighter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity.TriFighter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/Title.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/Title.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Events/BaseGameEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Events/BaseGameEvent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/GameManager.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/GameManager.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/SceneLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/SceneLoader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/Title.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/Title.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scripts/GameManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scripts/GameManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scripts/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Scripts/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,24 +60,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Discover.Launch.Via.Unity": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "rider.run.widget.enabled.cache": "false",
-    "settings.editor.selected.configurable": "CodeLensConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;rider.run.widget.enabled.cache&quot;: &quot;false&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeLensConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="D:\Program Files\Unity\Editor\2020.1.4f1\Editor\Unity.exe" />
@@ -101,7 +117,8 @@
       <option name="presentableId" value="Default" />
       <updated>1653986089375</updated>
       <workItem from="1653986185436" duration="30154000" />
-      <workItem from="1654074479550" duration="7972000" />
+      <workItem from="1654074479550" duration="8515000" />
+      <workItem from="1654121992845" duration="5021000" />
     </task>
     <servers />
   </component>

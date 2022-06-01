@@ -8,9 +8,11 @@ using UnityEngine;
 
 namespace TriFighter {
     public sealed class GameManager : MonoBehaviour {
-        [SerializeField] private GameObject _loadingScreen = null;
-        [SerializeField] private GlobalSettings _settings = null;
-        [SerializeField] private VoidEvent _sceneReady;
+        [SerializeField] private GameObject _loadingScreen;
+        [SerializeField] private GlobalSettings _settings;
+        [SerializeField] private VoidEvent _sceneReadyEvent;
+
+        [SerializeField] private VoidListener _startGameListener;
 
         private SceneLoader _sceneLoader;
         
@@ -30,11 +32,21 @@ namespace TriFighter {
         }
 
         private void Start() {
-            _sceneLoader.LoadScene(SceneLoader.SceneIndex.TitleScreen);
-            
-            if(_sceneReady != null)
-                _sceneReady.Raise();
+            LoadScene(SceneLoader.SceneIndex.TitleScreen);
         }
 
+        public void LoadScene(SceneLoader.SceneIndex sceneIndex) {
+            _sceneLoader.LoadScene(sceneIndex);
+            
+            if(_sceneReadyEvent != null)
+                _sceneReadyEvent.Raise();
+        }
+        
+        public void LoadScene() {
+            _sceneLoader.LoadScene(SceneLoader.SceneIndex.GamePlay);
+            
+            if(_sceneReadyEvent != null)
+                _sceneReadyEvent.Raise();
+        }
     }
 }

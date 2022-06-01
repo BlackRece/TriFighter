@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace TriFighter.SceneManagement {
     public class SceneLoader : MonoBehaviour {
         public enum SceneIndex {
-            GameManager = 0,
+            SceneManager = 0,
             TitleScreen = 1,
             GamePlay = 2
         }
@@ -24,20 +24,23 @@ namespace TriFighter.SceneManagement {
         }
         
         private void Start() {
-            _previousSceneIndex = SceneIndex.GameManager;
+            _previousSceneIndex = SceneIndex.SceneManager;
 
-            StartCoroutine(LoadAsyncOperation_CO(SceneIndex.TitleScreen));
+            //StartCoroutine(LoadAsyncOperation_CO(SceneIndex.TitleScreen));
+            //StartCoroutine(LoadAsyncOperation_CO(SceneIndex.GamePlay));
+            //LoadScene(SceneIndex.GamePlay);
+            LoadScene(SceneIndex.TitleScreen);
         }
         
         private IEnumerator LoadAsyncOperation_CO(SceneIndex nextSceneIndex) {
             var scenes = new List<AsyncOperation>();
 
-            if (_previousSceneIndex != SceneIndex.GameManager)
+            if (_previousSceneIndex != SceneIndex.SceneManager)
                 scenes.Add(SceneManager.UnloadSceneAsync((int)_previousSceneIndex));
 
             _previousSceneIndex = nextSceneIndex;
             
-            if (nextSceneIndex != SceneIndex.GameManager)
+            if (nextSceneIndex != SceneIndex.SceneManager)
                 SceneManager.LoadSceneAsync((int)nextSceneIndex, LoadSceneMode.Additive);
 
             var progress = 0f;
