@@ -5,30 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c70a6ea2-1b5b-470c-a40f-6701a3c709bd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/GlobalSettings.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/GlobalSettings.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/GameManager.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/GameManager.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/GamePlay.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/GamePlay.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/SceneLoader.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/SceneLoader.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/Title.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/Title.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scripts.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scripts/GameManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scripts/GameManager.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scripts/GlobalSettings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scripts/GlobalSettings.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scripts/MainMenu.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scripts/MainMenu.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity.TriFighter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity.TriFighter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/Game.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/Game.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/AIWeaponController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/AIWeaponController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/ShipController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/ShipController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/Title.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/Title.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1653986089375</updated>
       <workItem from="1653986185436" duration="30154000" />
-      <workItem from="1654074479550" duration="7000000" />
+      <workItem from="1654074479550" duration="7972000" />
     </task>
     <servers />
   </component>
