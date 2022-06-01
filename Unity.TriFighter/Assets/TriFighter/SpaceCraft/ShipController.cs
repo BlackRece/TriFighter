@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace TriFighter {
     public sealed class ShipController : MonoBehaviour {
-        [SerializeField] private AIInputController _aiInputController = null;
-        [SerializeField] private AICursorController _aiCursorController = null;
-        [SerializeField] private AIWeaponController _aiWeaponController = null;
+        [SerializeField] private AIInputController _aiInputController;
+        [SerializeField] private AICursorController _aiCursorController;
+        [SerializeField] private AIWeaponController _aiWeaponController;
 
-        [SerializeField] private GameObject _bulletPrefab = null;
+        [SerializeField] private GameObject _bulletPrefab;
         [SerializeField] private float _bulletSpeed = 5f;
 
         private IInputController _inputController;
