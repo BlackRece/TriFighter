@@ -9,14 +9,10 @@ namespace TriFighter.Terrain {
         void SetParent(ITileMap parentTileMap);
         
         bool HasChildren { get; }
-        bool IsEdge { get; }
 
         Vector2Int GetMapPosition();
         Vector3 GetTopPosition();
         Vector3 GetWorldPosition(Vector2Int mapPosition);
-        
-        List<Area.DoorToThe> GetEdges { get; }
-        void FlagAsEdge(Area.DoorToThe edge);
         
         void FlagAsVisited();
     }
@@ -25,10 +21,6 @@ namespace TriFighter.Terrain {
     public sealed class Tile : MonoBehaviour, ITile {
         private Vector3 _modelSize;
         
-        private List<Area.DoorToThe> _edges;
-        public List<Area.DoorToThe> GetEdges => _edges;
-        
-        public bool IsEdge => _edges.Count > 0;
         public GameObject GetGameObject => gameObject;
         public Transform GetTransform => transform;
 
@@ -38,7 +30,6 @@ namespace TriFighter.Terrain {
 
         private void Awake() {
             _modelSize = GetComponent<Renderer>().bounds.size;
-            _edges = new List<Area.DoorToThe>();
         }
 
         public Vector3 GetWorldPosition(Vector2Int mapPosition) =>
@@ -59,11 +50,6 @@ namespace TriFighter.Terrain {
         
         public void SetParent(ITileMap parentTileMap) {
             _parentTileMap = parentTileMap;
-        }
-
-        public void FlagAsEdge(Area.DoorToThe edge) {
-            if (!_edges.Contains(edge)) 
-                _edges.Add(edge);
         }
 
         public void FlagAsVisited() {

@@ -67,14 +67,14 @@ namespace TriFighter.Terrain {
                     var mapPosition = new Vector2Int(x, y);
                     var tile = GenerateTile(mapPosition);
 
-                    if (x == width.min) 
-                        tile.FlagAsEdge(Area.DoorToThe.West);
-                    if (x == width.max)
-                        tile.FlagAsEdge(Area.DoorToThe.East);
-                    if (y == height.min)
-                        tile.FlagAsEdge(Area.DoorToThe.North);
-                    if (y == height.max)
-                        tile.FlagAsEdge(Area.DoorToThe.South);
+                    // if (x == width.min) 
+                    //     tile.FlagAsEdge(Area.DoorToThe.West);
+                    // if (x == width.max)
+                    //     tile.FlagAsEdge(Area.DoorToThe.East);
+                    // if (y == height.min)
+                    //     tile.FlagAsEdge(Area.DoorToThe.North);
+                    // if (y == height.max)
+                    //     tile.FlagAsEdge(Area.DoorToThe.South);
 
                     _tiles.Add(mapPosition, tile);
                 }
@@ -104,7 +104,6 @@ namespace TriFighter.Terrain {
                 tilePair.Value.FlagAsVisited();
             }
 
-            _parentArea.FlagAsVisited();
         }
 
         public void SetParentArea(IArea parentArea) {
@@ -118,7 +117,6 @@ namespace TriFighter.Terrain {
             var isEdgeTile = true;
             do {
                 targetTile = listOfTiles[Random.Range(0, listOfTiles.Count)];
-                isEdgeTile = targetTile.IsEdge;
             } while (isEdgeTile);
 
             return targetTile;

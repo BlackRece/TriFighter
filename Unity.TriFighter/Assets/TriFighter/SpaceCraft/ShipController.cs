@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace TriFighter {
     public sealed class ShipController : MonoBehaviour {
+        [SerializeField] private bool DEBUG;
         [SerializeField] private AIInputController _aiInputController;
         [SerializeField] private AICursorController _aiCursorController;
         [SerializeField] private AIWeaponController _aiWeaponController;
 
         [SerializeField] private StringEvent _debugMsgEvent;
-        [SerializeField] private bool DEBUG;
 
         [SerializeField] private GameObject _bulletPrefab;
         [SerializeField] private float _bulletSpeed = 5f;
@@ -28,9 +28,6 @@ namespace TriFighter {
         private bool _hasAICursor => _aiCursorController != null;
         private bool _hasAIWeapon => _aiWeaponController != null;
         
-        // public Vector3 DEBUG_Mouse;
-        // public Vector3 DEBUG_Cursor;
-        // public Vector3 DEBUG_Cam;
         public Vector2 DEBUG_Axis;
         public Vector3 DEBUG_Speed;
         public Vector3 DEBUG_Position;

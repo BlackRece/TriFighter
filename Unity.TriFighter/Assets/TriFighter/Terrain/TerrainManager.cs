@@ -9,6 +9,10 @@ namespace TriFighter.Terrain {
         [SerializeField] private TerrainController _terrainController;
         [SerializeField] private TerrainLibrary _terrainLib;
 
+        [SerializeField] private int _northBoundary = 10;
+        [SerializeField] private int _southBoundary = -10;
+        
+
         private void Awake() {
             if (_terrainController == null)
                 throw new NullReferenceException("No [Terrain Controller] attached!");
@@ -19,7 +23,10 @@ namespace TriFighter.Terrain {
 
         private void Start() {
             _terrainLib.Init();
-            _terrainController.Init(transform, new IntSize(30, 20));
+            
+            _terrainController.Init(
+                transform,
+                CameraController.GetViewportRect);
             
             _terrainController.CreateSpaceMap();
         }

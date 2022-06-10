@@ -41,40 +41,5 @@ namespace TriFighter.Terrain {
             return centeredRect;
         }
 
-        public static IntSize CalcPathSize(Area.DoorToThe direction, int pathSize) {
-            var path = new IntSize(Area.PATH_WIDTH, Area.PATH_WIDTH);
-
-            var oddPathSize = pathSize;
-            if ((float) pathSize % 2 == 0) oddPathSize++;
-            
-            switch (direction) {
-                case Area.DoorToThe.North:
-                case Area.DoorToThe.South:
-                    path.Height += oddPathSize;
-                    break;
-                case Area.DoorToThe.East:
-                case Area.DoorToThe.West:
-                    path.Width += oddPathSize;
-                    break;
-            }
-
-            return path;
-        }
-
-        public static Area.DoorToThe GetLastDirection(Area.DoorToThe direction) {
-            switch (direction) {
-                case Area.DoorToThe.North:
-                    return Area.DoorToThe.South;
-                case Area.DoorToThe.South:
-                    return Area.DoorToThe.North;
-                case Area.DoorToThe.East:
-                    return Area.DoorToThe.West;
-                case Area.DoorToThe.West:
-                    return Area.DoorToThe.East;
-            }
-
-            return Area.DoorToThe.None;
-        }
-
     }
 }
