@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace TriFighter {
-    [CreateAssetMenu(menuName = "New AI CursorController")]
+    [CreateAssetMenu(menuName = "TriFighter Objects/AI Controllers/New AI CursorController")]
     public sealed class AICursorController : ScriptableObject, ICursorController {
         private GameObject _cursorMarker;
         
@@ -12,7 +12,7 @@ namespace TriFighter {
             _cursorMarker.transform.SetParent(parentTransform);
         }
 
-        public Vector3 Update(Vector3 target) {
+        public Vector3 UpdatePosition(Vector3 target) {
             return target;
         }
     }

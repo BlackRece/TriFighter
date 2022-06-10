@@ -1,3 +1,3 @@
 ﻿namespace BlackRece.Events {
-    public class IntListener : BaseGameEventListener<int, IntEvent, UnityIntEvent> { }
+    public sealed class IntListener : BaseGameEventListener<int, IntEvent, UnityIntEvent> { }
 }

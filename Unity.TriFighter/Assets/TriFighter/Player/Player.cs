@@ -33,7 +33,7 @@ namespace TriFighter {
 
         private void Awake() {
             _renderer = GetComponent<Renderer>();
-            _bulletPooler.Init("Player's Bullet Conatiner");
+            _bulletPooler.Init("Player's Bullet Container");
         }
 
         private void Start() {

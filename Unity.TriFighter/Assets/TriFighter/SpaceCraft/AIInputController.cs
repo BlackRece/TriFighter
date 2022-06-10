@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace TriFighter {
-    [CreateAssetMenu(menuName = "New AI InputController")]
+    [CreateAssetMenu(menuName = "TriFighter Objects/AI Controllers/New AI InputController")]
     public sealed class AIInputController : ScriptableObject, IInputController {
         private Vector2 _axis;
         public Vector2 Axis => _axis;
@@ -13,6 +13,9 @@ namespace TriFighter {
         public bool MouseButtonLeft => _mouseButtonLeft;
 
         public ISubscriber EventQueue { get; private set; }
+
+        private float _maxMoveSpeed;
+        public float MaxMoveSpeed => _maxMoveSpeed;
 
         public void Update() {
             _axis.Set(

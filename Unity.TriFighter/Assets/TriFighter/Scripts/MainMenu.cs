@@ -1,13 +1,16 @@
 ﻿using BlackRece.Events;
 
+using TriFighter.ScreenManagement;
+
 using UnityEngine;
 
 namespace TriFighter.UI {
     public class MainMenu : MonoBehaviour {
-        [SerializeField] private VoidEvent _startGame;
+        [SerializeField] private IntEvent _startGame;
 
         public void NewGame_Click() {
-            _startGame?.Raise();
+            if (_startGame != null) 
+                _startGame.Raise((int)ScreenManager.ScreenIndex.GamePlay);
         }
 
         public void LoadGame_Click() { }

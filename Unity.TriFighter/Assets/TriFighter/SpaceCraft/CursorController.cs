@@ -3,7 +3,7 @@
 namespace TriFighter {
     public interface ICursorController {
         void CreateMarker(string markerName, Transform parentTransform);
-        Vector3 Update(Vector3 target);
+        Vector3 UpdatePosition(Vector3 target);
     }
 
     public sealed class CursorController : ICursorController {
@@ -15,7 +15,7 @@ namespace TriFighter {
             _cursorMarker.transform.SetParent(parentTransform);
         }
         
-        public Vector3 Update(Vector3 target) {
+        public Vector3 UpdatePosition(Vector3 target) {
             var targetPositionInWorld = CameraController.GetCursorPosition(target);
             if(_cursorMarker != null)
                 _cursorMarker.transform.SetPositionAndRotation(targetPositionInWorld, Quaternion.identity);

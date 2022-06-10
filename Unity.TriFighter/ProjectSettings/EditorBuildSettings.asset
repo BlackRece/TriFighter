@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/TriFighter/Scene/SceneManager.unity
+    path: Assets/TriFighter/Scenes/SplashScreen.unity
     guid: 7c456ac4152c8b149924886a7bfe6054
   - enabled: 1
-    path: Assets/TriFighter/Scene/TitleMenu/Title.unity
+    path: Assets/TriFighter/Scenes/TitleScreen.unity
     guid: af1021df13dd37b438d428d2e1434821
   - enabled: 1
-    path: Assets/TriFighter/Scene/GamePlay.unity
+    path: Assets/TriFighter/Scenes/GameScreen.unity
     guid: 8dbc53989ebcfbb4397640b40221da4c
   m_configObjects: {}

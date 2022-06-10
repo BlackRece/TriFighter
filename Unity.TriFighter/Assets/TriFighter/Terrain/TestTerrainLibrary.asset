@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 045308bb90044c4d8490010c6c950b75, type: 3}
+  m_Name: TestTerrainLibrary
+  m_EditorClassIdentifier: 
+  _wall: {fileID: 9009042962775603440, guid: 0ec51c5205440454a82049a8c7d15995, type: 3}

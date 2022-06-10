@@ -6,6 +6,8 @@ namespace TriFighter {
     
     public interface IInputController {
         Vector2 Axis { get; }
+        float MaxMoveSpeed { get; }
+
         Vector3 MousePosition { get; }
         bool MouseButtonLeft { get; }
         
@@ -29,6 +31,9 @@ namespace TriFighter {
 
         private Vector2 _axis;
         public Vector2 Axis => _axis;
+
+        private float _maxMoveSpeed;
+        public float MaxMoveSpeed => _maxMoveSpeed;
 
         private Vector3 _mousePosition;
         public Vector3 MousePosition => _mousePosition;

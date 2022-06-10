@@ -5,25 +5,84 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c70a6ea2-1b5b-470c-a40f-6701a3c709bd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/SceneManager.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/SceneManager.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/TitleMenu.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/TitleMenu/StartGameEvent.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/TitleMenu/StartGameEvent.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/TitleMenu/Title.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/TitleMenu/Title.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scripts/SceneManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scripts/SceneManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/DebugDisplay/DebugMessageEvent.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/DebugDisplay/DebugMessageEvent.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/DebugDisplay/MessageLogger.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Depenancy Injection/DependencyManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Depenancy Injection/IoC.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Events/FloatEvent.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Events/FloatEvent.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Listeners/FloatListener.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Listeners/FloatListener.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Helper/IntRange.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Helper/IntSize.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Helper/Limit.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scenes.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scenes/GameScreen.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scenes/GameScreen.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scenes/SplashScreen.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scenes/SplashScreen.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scenes/TitleScreen.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Scenes/TitleScreen.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/ScreenManager.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/ScreenManager/LoadScreenEvent.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/ScreenManager/LoadScreenEvent.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/ScreenManager/LoadingCanvas.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/ScreenManager/LoadingCanvas.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/ScreenManager/LoadingCanvas.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/ScreenManager/LoadingCanvas.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/ScreenManager/LoadingProgressEvent.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/ScreenManager/LoadingProgressEvent.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/ScreenManager/SceneController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/ScreenManager/SceneController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/ScreenManager/Screen Manager.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/ScreenManager/Screen Manager.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/ScreenManager/ScreenManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/ScreenManager/ScreenManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Area.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/AreaDetail.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/AreaHelper.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Walls/SolidWall.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Walls/WallMap.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/TerrainController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/TerrainLibrary.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/TerrainManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity.TriFighter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity.TriFighter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Events/BaseGameEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Events/BaseGameEvent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/GameManager.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/GameManager.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/SceneLoader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Scene/SceneLoader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/Title.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/Title.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scripts/GameManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scripts/GameManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Camera/CameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Camera/CameraController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Events/IntEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Events/IntEvent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Events/StringEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Events/StringEvent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Events/VoidEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Events/VoidEvent.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Listeners/IntListener.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Listeners/IntListener.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Listeners/StringListener.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/Listeners/StringListener.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/UnityEvents.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/DebugDisplay.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/UnityEvents/UnityIntEvent.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/UnityEvents/UnityIntEvent.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/DebugDisplay/MessageLogger.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/UnityEvents/UnityVoidEvent.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/EventSystem/UnityEvents/UnityVoidEvent.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/GeneralManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/GeneralManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Player/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/GamePlay.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/GamePlay.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/SceneLoader.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/SceneLoader.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/SceneManager.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/SceneManager.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/TitleMenu.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/TitleMenu/StartGameEvent.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/TitleMenu/StartGameEvent.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/TitleMenu/Title.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scene/TitleMenu/Title.unity.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scripts/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Scripts/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scripts/SceneManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Scripts/SceneManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/AICursorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/AICursorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/AIInputController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/AIInputController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/AIWeaponController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/AIWeaponController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/CursorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/CursorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/InputController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/InputController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/MovementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/MovementController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/ShipController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/ShipController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -46,6 +105,11 @@
       </branch-storage>
     </favorite-branches>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e8645a79b0794e0e9a2b5bbff081b88a128000/dd/1d75ee80/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e8645a79b0794e0e9a2b5bbff081b88a128000/e0/fe0c24b5/UnityEvent`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/TriFighter/DebugDisplay/MessageLogger.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -119,6 +183,13 @@
       <workItem from="1653986185436" duration="30154000" />
       <workItem from="1654074479550" duration="8515000" />
       <workItem from="1654121992845" duration="5021000" />
+      <workItem from="1654161354020" duration="21123000" />
+      <workItem from="1654243822534" duration="7664000" />
+      <workItem from="1654417149291" duration="16404000" />
+      <workItem from="1654598736001" duration="18155000" />
+      <workItem from="1654670074941" duration="600000" />
+      <workItem from="1654764206923" duration="24114000" />
+      <workItem from="1654857432518" duration="14346000" />
     </task>
     <servers />
   </component>
@@ -142,6 +213,38 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Walls/WallMap.cs</url>
+          <line>182</line>
+          <properties documentPath="D:\Documents\GitHub\TriFighter\Unity.TriFighter\Assets\TriFighter\Terrain\Areas\Walls\WallMap.cs" initialLine="164" containingFunctionPresentation="method 'GenerateWall'">
+            <startOffsets>
+              <option value="6784" />
+            </startOffsets>
+            <endOffsets>
+              <option value="6785" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/MovementController.cs</url>
+          <line>37</line>
+          <properties documentPath="D:\Documents\GitHub\TriFighter\Unity.TriFighter\Assets\TriFighter\SpaceCraft\MovementController.cs" initialLine="32" containingFunctionPresentation="method 'MoveByInput'">
+            <startOffsets>
+              <option value="1164" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1214" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

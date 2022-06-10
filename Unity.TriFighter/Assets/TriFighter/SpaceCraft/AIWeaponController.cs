@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace TriFighter {
-    [CreateAssetMenu(menuName = "New AI WeaponController")]
+    [CreateAssetMenu(menuName = "TriFighter Objects/AI Controllers/New AI WeaponController")]
     public sealed class AIWeaponController : ScriptableObject, IWeaponController {
         public void ActivateWeapon(bool activationState, BulletData bulletData) {
         }

@@ -4,93 +4,91 @@ using UnityEngine;
 
 namespace TriFighter {
     public interface IMovementController {
-        Vector2 MoveSpeed { get; }
-        void ProcessInput(Vector2 inputAxis);
-        void AdjustRotation(Vector3 targetPosition);
+        Vector3 MoveSpeed { get; }
+        bool DEBUG { get; set; }
+        void MoveByInput(Vector3 inputAxis);
     }
     
     public sealed class MovementController : IMovementController {
+        private const float DRAG_RATIO = 0.02f;
         private readonly Transform _transform;
         private readonly float _maxMoveSpeed;
-        private Vector2 _moveSpeed;
-        private readonly float _rotateSpeed;
+        private Vector3 _moveSpeed;
+        private readonly float _dragSpeed;
 
-        private ISubscriber _camEvents;
-        public static event Action<Vector3> PlayerMoved = delegate(Vector3 position) { }; 
+        public Vector3 MoveSpeed => _moveSpeed;
+        public bool DEBUG { get; set; }
+            
 
-        public MovementController(Transform transform, float maxMoveSpeed, float rotateSpeed) {
+        public MovementController(Transform transform, float maxMoveSpeed) {
             _transform = transform;
             _maxMoveSpeed = maxMoveSpeed;
-            _rotateSpeed = rotateSpeed;
             _moveSpeed = new Vector2();
             
-            //PubSub.RegisterSubscribe<MoveTargetEvent>(NotifyMove);
+            _dragSpeed = _maxMoveSpeed * DRAG_RATIO;
+            Log($"Drag: {_dragSpeed}");
         }
 
-        public Vector2 MoveSpeed {
-            get => _moveSpeed;
-            set => _moveSpeed = value;
-        }
+        public void MoveByInput(Vector3 inputAxis) {
+            var isNotZero = inputAxis != Vector3.zero;
+            var preInputmoveSpeed = _moveSpeed;
+            ApplyInput(inputAxis);
 
-        public void ProcessInput(Vector2 inputAxis) {
-            AdjustSpeed(inputAxis);
-            LimitSpeedToMax();
+            if (isNotZero) {
+                Log($"Move speed pre input: {preInputmoveSpeed}");
+                Log($"Move speed after input: {_moveSpeed}");
+            }
+            
+            ApplyDrag();
+            ClampSpeed();
+            if (isNotZero) Log($"Move speed after clamp: {_moveSpeed}");
+
             MoveBy();
-
-            //AdjustRotation();
         }
 
-        public void AdjustRotation(Vector3 targetPosition) {
-            var direction = targetPosition - _transform.position;
-            var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            var rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            var rotateStep = _rotateSpeed * 10 * Time.deltaTime;
-            _transform.rotation = Quaternion.Slerp(_transform.rotation, rotation, rotateStep);
-        }
+        private void ApplyInput(Vector3 input) => 
+            _moveSpeed += input;
 
-        private void MoveBy() {
-            var position = _transform.position;
-            var step = (Vector3)_moveSpeed * Time.deltaTime;
-            position += step;
-            //PlayerMoved(position);
-            //PubSub.Publish(new MoveTargetEvent{Position = position});
-            _transform.position = position;
-        }
-
-        private void AdjustSpeed(Vector2 speed) {
-            const float DragSpeed = 0.2f;
-
-            float x = 0, y = 0;
-
-            x = _moveSpeed.x + speed.x;
-            y = _moveSpeed.y + speed.y;
-
-            _moveSpeed.Set(x, y);
+        private void ApplyDrag() {
+            if (_moveSpeed.x < 0) {
+                _moveSpeed.x += _dragSpeed;
+                if (_moveSpeed.x >= 0) _moveSpeed.x = 0;
+            }
             
-            if (_moveSpeed.x < 0) x = _moveSpeed.x + DragSpeed;
-            if (_moveSpeed.x > 0) x = _moveSpeed.x - DragSpeed;
+            if (_moveSpeed.x > 0) {
+                _moveSpeed.x -= _dragSpeed;
+                if (_moveSpeed.x <= 0) _moveSpeed.x = 0;
+            }
 
-            if (_moveSpeed.y < 0) y = _moveSpeed.y + DragSpeed;
-            if (_moveSpeed.y > 0) y = _moveSpeed.y - DragSpeed;
+            if (_moveSpeed.y < 0) {
+                _moveSpeed.y += _dragSpeed;
+                if (_moveSpeed.y >= 0) _moveSpeed.y = 0;
+            }
 
-            if (_moveSpeed.x < DragSpeed && _moveSpeed.x > -DragSpeed) x = 0;
-            if (_moveSpeed.y < DragSpeed && _moveSpeed.y > -DragSpeed) y = 0;
-            
-            _moveSpeed.Set(x, y);
+            if (_moveSpeed.y > 0) {
+                _moveSpeed.y -= _dragSpeed;
+                if (_moveSpeed.y <= 0) _moveSpeed.y = 0;
+            }
         }
+        
+        private void ClampSpeed() =>
+            _moveSpeed.Set(
+                Mathf.Clamp(_moveSpeed.x, -_maxMoveSpeed, _maxMoveSpeed),
+                Mathf.Clamp(_moveSpeed.y, -_maxMoveSpeed, _maxMoveSpeed),
+                0
+            );
 
-        private void LimitSpeedToMax() {
-            if (_moveSpeed.x > +_maxMoveSpeed) _moveSpeed.x = +_maxMoveSpeed; 
-            if (_moveSpeed.x < -_maxMoveSpeed) _moveSpeed.x = -_maxMoveSpeed; 
-            
-            if (_moveSpeed.y > +_maxMoveSpeed) _moveSpeed.y = +_maxMoveSpeed; 
-            if (_moveSpeed.y < -_maxMoveSpeed) _moveSpeed.y = -_maxMoveSpeed;
-        }
+        private void MoveBy() => _transform.Translate(_moveSpeed * Time.deltaTime);
 
         private void NotifyMove(object publishEvent) {
             var noticeevent = publishEvent as MoveTargetEvent;
             
-        } 
+        }
+
+        private void Log(string message) {
+            if (DEBUG)
+                Debug.Log(message);
+        }
     }
 
     public sealed class MoveTargetEvent {

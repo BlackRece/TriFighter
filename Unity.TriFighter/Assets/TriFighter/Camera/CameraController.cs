@@ -45,9 +45,6 @@ namespace TriFighter {
         }
 
         private static Rect GetPlayArea() {
-            // viewport reminder:
-            // bottom-left  = 0,0
-            // top-right    = 1,1
             var topRight = _cam.ViewportToWorldPoint(new Vector3(1, 1));
             var botleft = _cam.ViewportToWorldPoint(new Vector3(0, 0));
 
@@ -83,7 +80,6 @@ namespace TriFighter {
 
         private void Awake() {
             _cam = Camera.main;
-            MovementController.PlayerMoved += TrackPlayerMovement;
         }
     }
 

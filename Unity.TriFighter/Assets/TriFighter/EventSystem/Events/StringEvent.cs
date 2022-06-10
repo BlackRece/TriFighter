@@ -6,7 +6,7 @@ namespace BlackRece.Events {
         menuName = "BlackRece/Game Events/String Event",
         fileName = "New String Event"
     )]
-    public class StringEvent : BaseGameEvent<string> { }
+    public sealed class StringEvent : BaseGameEvent<string> { }
 
-    [System.Serializable] public class UnityStringEvent : UnityEvent<string> { }
+    [System.Serializable] public sealed class UnityStringEvent : UnityEvent<string> { }
 }

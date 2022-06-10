@@ -1,3 +1,3 @@
 ﻿namespace BlackRece.Events {
-    public class StringListener : BaseGameEventListener<string, StringEvent, UnityStringEvent> { }
+    public sealed class StringListener : BaseGameEventListener<string, StringEvent, UnityStringEvent> { }
 }
