@@ -3,32 +3,35 @@
 using TriFighter.Types;
 
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace TriFighter.Terrain {
     public interface IWallMap {
-        void Init(Transform parent);
-        void AddWalls(List<Vector3> wallPositions);
-        void CreateWalls(List<ITile> tiles);
-        void CreateBoundary(Vector2Int position);
-        void CreateOpeningInBoundary(List<Vector2Int> boundaryOpenings);
-        void SetPosition(Vector2Int pos);
+        void Init(Transform parent, FloatRange width);
+        void AddBoundary(Vector3 wallPosition);
+        void AddWalls(Vector3 wallPosition);
+        void SetContainerPosition(Vector2Int pos);
+        void TranslateBy();
     }
     
     public sealed class WallMap : ScriptableObject, IWallMap {
+        private const int max = 10;
         private Transform _parent;
         private string _name;
+
+        private FloatRange _width;
+        private int _colCount;
         
-        private Dictionary<Vector2Int, IWall> _walls;
+        private Dictionary<int, IWall> _walls;
         private Vector2Int _size;
         
         private GameObject _container;
         public GameObject WallContainer => _container;
 
-        public void Init(Transform parent) {
+        public void Init(Transform parent, FloatRange width) {
             _parent = parent;
+            _width = width;
+            _colCount = 0;
 
-            _walls = new Dictionary<Vector2Int, IWall>();
             _name = $"Walls ({_size.x} : {_size.y})";
 
             _container = new GameObject(_name);
@@ -36,68 +39,28 @@ namespace TriFighter.Terrain {
         }
         
         private void OnEnable() {
-            _walls = new Dictionary<Vector2Int, IWall>();
+            _walls = new Dictionary<int, IWall>();
         }
 
-        public void CreateWalls(List<ITile> tiles) {
-            foreach (var tile in tiles) {
-                
-                var mapPos = tile.GetMapPosition();
-                if (_walls.ContainsKey(mapPos)) continue;
-                
-                var wall = GenerateWall(_container.transform);
-                
-                var worldPos = tile.GetTopPosition();
-                worldPos.y += GetGameObjectHeight(wall.GetGameObject) / 2;
-                wall.GetGameObject.transform.position = worldPos;
-                
-                _walls.Add(mapPos, wall);
-            }
+        public void AddWalls(Vector3 wallPosition) {
+            var wall = GenerateBoundary();
+            var index = _walls.Count;
+            _walls.Add(index, wall);
+            _colCount++;
         }
 
-        public void AddWalls(List<Vector3> wallPositions) {
-            foreach (var position in wallPositions) {
-                var wall = GenerateBoundary();
-                wall.GetGameObject.transform.position = position;
-                var mapPos = new Vector2Int((int)position.x, (int)position.y); 
-                _walls.Add(mapPos, wall);
-            }
-        }
-
-        public void CreateBoundary(Vector2Int position) {
-            var size = new IntSize(_size.x, _size.y);
-            var mid = size.Center();
-
-            var width = new IntRange(position.x - mid.x, position.x + mid.x);
-            var height = new IntRange(position.y - mid.y, position.y + mid.y);
-
-            for (var y = height.min; y <= height.max; y++) {
-                var northPos = new Vector2Int(width.min, height.max);
-                var southPos = new Vector2Int(width.max, height.max);
-                
-                var northWall = GenerateBoundary(northPos);
-                var southWall = GenerateBoundary(southPos);
-                
-                AddBoundary(northPos, northWall);
-                AddBoundary(southPos, southWall);
-            }
-        }
-
-        private void AddBoundary(Vector2Int position, IWall boundary) {
-            if (_walls.ContainsKey(position))
+        public void AddBoundary(Vector3 wallPosition) {
+            if (!_walls.ContainsKey(_colCount)) {
+                AddWalls(wallPosition);
                 return;
-            
-            _walls.Add(position, boundary);
-        }
-
-        public void CreateOpeningInBoundary(List<Vector2Int> boundaryOpenings) {
-            foreach (var opening in boundaryOpenings) {
-                if (_walls.ContainsKey(opening)) 
-                    _walls[opening].Hide();
             }
-        }
+            
+            //if (_width.IsInRange(_walls[_colCount].GameObjectPosition.x))
+            //    return;
 
-        public void SetPosition(Vector2Int pos) {
+        }
+        
+        public void SetContainerPosition(Vector2Int pos) {
             var offset = new Vector3(pos.x, 0, pos.y);
 
             _container.transform.position = offset;
@@ -107,22 +70,18 @@ namespace TriFighter.Terrain {
             }
         }
 
-        private IWall GenerateWall(Transform parentTransform) {
-            var wallGO = Instantiate(
-                IoC.Resolve<IWall>().GetGameObject,
-                _container.transform
-            );
-            
-            return wallGO.GetComponent<IWall>();
-        }
+        public void TranslateBy() {
+            foreach (var wall in _walls) {
+                var wallTransform = wall.Value.GetGameObject.transform;
+                wallTransform.Translate(Vector3.left);
 
-        private IWall GenerateBoundary(Vector2Int mapPosition) {
-            var wallGO = Instantiate(
-                IoC.Resolve<IWall>().GetGameObject,
-                _container.transform
-            );
-
-            return wallGO.GetComponent<IWall>();
+                var wallPosition = wallTransform.position;
+                if (_width.IsInRange(wallPosition.x))
+                    continue;
+                
+                wallPosition.x = _width.max;
+                wallTransform.position = wallPosition;
+            }
         }
 
         private IWall GenerateBoundary() {
@@ -133,10 +92,5 @@ namespace TriFighter.Terrain {
 
             return wallGO.GetComponent<IWall>();
         }
-        
-
-        private float GetGameObjectHeight(GameObject gameObject) => 
-                gameObject.GetComponent<Renderer>().bounds.size.y;
-        
     }
 }

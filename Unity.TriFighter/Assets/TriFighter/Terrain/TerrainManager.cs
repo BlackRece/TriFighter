@@ -1,17 +1,11 @@
 ﻿using System;
 
-using TriFighter.Types;
-
 using UnityEngine;
 
 namespace TriFighter.Terrain {
     public class TerrainManager : MonoBehaviour {
         [SerializeField] private TerrainController _terrainController;
         [SerializeField] private TerrainLibrary _terrainLib;
-
-        [SerializeField] private int _northBoundary = 10;
-        [SerializeField] private int _southBoundary = -10;
-        
 
         private void Awake() {
             if (_terrainController == null)
@@ -27,9 +21,10 @@ namespace TriFighter.Terrain {
             _terrainController.Init(
                 transform,
                 CameraController.GetViewportRect);
-            
-            _terrainController.CreateSpaceMap();
+        }
+        
+        private void Update() {
+            _terrainController.Update();
         }
     }
-
 }

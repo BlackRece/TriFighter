@@ -10,5 +10,7 @@ namespace TriFighter.Types {
             this.min = min;
             this.max = max;
         }
+
+        public bool IsInRange(float value) => value >= min && value <= max;
     }
 }

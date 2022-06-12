@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c70a6ea2-1b5b-470c-a40f-6701a3c709bd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Helper/FloatRange.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/TriFighter/Helper/FloatRange.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity.TriFighter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity.TriFighter/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/ShipController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/ShipController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Area.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Area.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/AreaDetail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/AreaDetail.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/AreaHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/AreaHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Floors/Tile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Floors/Tile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Floors/TileMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Floors/TileMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Walls/SolidWall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Walls/SolidWall.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Walls/WallMap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Walls/WallMap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Terrain/TerrainController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/TerrainController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Terrain/TerrainManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Terrain/TerrainManager.cs" afterDir="false" />
-    </list>
+    <list default="true" id="c70a6ea2-1b5b-470c-a40f-6701a3c709bd" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,6 +29,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e8645a79b0794e0e9a2b5bbff081b88a128000/dd/1d75ee80/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e8645a79b0794e0e9a2b5bbff081b88a128000/e0/fe0c24b5/UnityEvent`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e8645a79b0794e0e9a2b5bbff081b88a128000/eb/1b36dc88/Rect.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TriFighter/DebugDisplay/MessageLogger.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -124,6 +111,7 @@
       <workItem from="1654670074941" duration="600000" />
       <workItem from="1654764206923" duration="24114000" />
       <workItem from="1654857432518" duration="22433000" />
+      <workItem from="1655041959699" duration="13241000" />
     </task>
     <servers />
   </component>
@@ -151,19 +139,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Walls/WallMap.cs</url>
-          <line>109</line>
-          <properties documentPath="D:\Documents\GitHub\TriFighter\Unity.TriFighter\Assets\TriFighter\Terrain\Areas\Walls\WallMap.cs" initialLine="164" containingFunctionPresentation="method 'GenerateWall'">
-            <startOffsets>
-              <option value="3823" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3824" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/MovementController.cs</url>
           <line>37</line>
