@@ -1,6 +1,4 @@
-using System.Collections.Generic;
-
-using TriFighter.Types;
+using System;
 
 using UnityEngine;
 
@@ -19,18 +17,7 @@ namespace TriFighter.Terrain {
         public void Init(Transform parentTransform, Rect spaceBoundary) {
             _parentTransform = parentTransform;
 
-            var offscreenBuffer = spaceBoundary.width / 4;
-            var boundaryWidth = new FloatRange(
-                spaceBoundary.xMin - offscreenBuffer,
-                spaceBoundary.xMax + offscreenBuffer
-            );
-
-            _boundary = new Rect(
-                boundaryWidth.min,
-                spaceBoundary.yMin,
-                boundaryWidth.max,
-                spaceBoundary.yMax
-            );
+            _boundary = spaceBoundary;
             
             _area = new Area(
                 new AreaDetail {

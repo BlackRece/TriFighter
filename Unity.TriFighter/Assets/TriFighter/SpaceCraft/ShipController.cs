@@ -34,6 +34,7 @@ namespace TriFighter {
         
         private float _delay;
         private float MAX_DELAY = 1f;
+        private Vector3 _lastPosition;
 
         public void Start() {
             _inputController = _hasAIInput
@@ -62,7 +63,7 @@ namespace TriFighter {
 
         public void Update() {
             if (DEBUG != _movementController.DEBUG) _movementController.DEBUG = DEBUG;
-            var shipPosition = transform.position;
+            _lastPosition = transform.position;
             
             _inputController.Update();
             var cursorPosition = _cursorController.UpdatePosition(_inputController.MousePosition);
@@ -71,7 +72,7 @@ namespace TriFighter {
 
             DEBUG_Axis = _inputController.Axis;
             DEBUG_Speed = _movementController.MoveSpeed;
-            DEBUG_Position = shipPosition;
+            DEBUG_Position = _lastPosition;
 
             _weaponController.Update();
             
@@ -79,18 +80,22 @@ namespace TriFighter {
                 return;
 
             NotifyDisplay($"Axis: {_inputController.Axis.x}:{_inputController.Axis.y}");
-            NotifyDisplay($"Position: {shipPosition.x}:{shipPosition.y}");
+            NotifyDisplay($"Position: {_lastPosition.x}:{_lastPosition.y}");
 
-            CameraController.UpdatePlayerPosition(shipPosition);
+            CameraController.UpdatePlayerPosition(_lastPosition);
 
             _weaponController.ActivateWeapon(
                 _inputController.MouseButtonLeft,
                 new BulletData {
-                    Origin = shipPosition,
+                    Origin = _lastPosition,
                     Target = cursorPosition,
                     Speed = _bulletSpeed
                 }
             );
+        }
+
+        private void OnCollisionEnter(Collision collision) {
+            transform.position = _lastPosition;
         }
 
         private void NotifyDisplay(string message) {

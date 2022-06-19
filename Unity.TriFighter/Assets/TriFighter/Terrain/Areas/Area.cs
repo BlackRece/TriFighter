@@ -6,8 +6,6 @@ namespace TriFighter.Terrain {
     public interface IArea {
         Rect RectSize { get; }
 
-        void AddBoundaryWalls();
-        void MoveBoundary();
         void Update();
     }
 
@@ -20,53 +18,39 @@ namespace TriFighter.Terrain {
 
         private IWallMap _topWallMap, _botWallMap;
 
-        private readonly Vector3 _top;
-        private readonly Vector3 _bot;
-
         public Area(AreaDetail detail) {
             _rect = detail.Rect;
-            
-            _top = new Vector3(_rect.xMax, _rect.yMin);
-            _bot = new Vector3(_rect.xMax, _rect.yMax);
 
             CreateContainer(detail.Parent);
             CreateSpace();
         }
-
+        
+        public void Update() {
+            _topWallMap.CycleBoundary();
+            _botWallMap.CycleBoundary();
+        }
+        
         private void CreateContainer(Transform parent) {
             _container = new GameObject();
             _container.transform.SetParent(parent);
         }
 
         private void CreateSpace() {
-            var width = new FloatRange((int)_rect.xMin, (int)_rect.xMax);
+            var topLine = new LinePath(
+                new Vector2(_rect.xMax, _rect.yMin),
+                new Vector2(_rect.xMin, _rect.yMin));
+
+            var botLine = new LinePath(
+                new Vector2(_rect.xMax, _rect.yMax),
+                new Vector2(_rect.xMin, _rect.yMax));
             
-            _topWallMap = IoC.Resolve<IWallMap>();
-            _topWallMap.Init(_container.transform, width);
+            _topWallMap = ScriptableObject.CreateInstance<WallMap>();
+            _topWallMap.Init("TopBoundary", _container.transform, topLine);
             
-            _botWallMap = IoC.Resolve<IWallMap>();
-            _botWallMap.Init(_container.transform, width);
+            _botWallMap = ScriptableObject.CreateInstance<WallMap>();
+            _botWallMap.Init("BotBoundary", _container.transform, botLine);
         }
 
-        public void AddBoundaryWalls() {
-            _topWallMap.AddBoundary(_top);
-            _botWallMap.AddBoundary(_bot);
-        }
         
-        public void MoveBoundary() {
-            _topWallMap.TranslateBy();
-            _botWallMap.TranslateBy();
-        }
-
-        public void Update() {
-            /*
-             * move walls to the left by 1
-             * any on the left-most edge move to right-most edge
-             * if not enough boundary blocks, add some 
-             */
-            
-            MoveBoundary();
-            AddBoundaryWalls();
-        }
     }
 }

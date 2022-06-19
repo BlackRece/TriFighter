@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 using TriFighter.Types;
 
@@ -6,20 +7,16 @@ using UnityEngine;
 
 namespace TriFighter.Terrain {
     public interface IWallMap {
-        void Init(Transform parent, FloatRange width);
-        void AddBoundary(Vector3 wallPosition);
-        void AddWalls(Vector3 wallPosition);
+        void Init(string containerName, Transform parent, LinePath path);
         void SetContainerPosition(Vector2Int pos);
-        void TranslateBy();
+        void CycleBoundary();
     }
     
     public sealed class WallMap : ScriptableObject, IWallMap {
-        private const int max = 10;
         private Transform _parent;
         private string _name;
 
-        private FloatRange _width;
-        private int _colCount;
+        private LinePath _boundaryPath;
         
         private Dictionary<int, IWall> _walls;
         private Vector2Int _size;
@@ -27,39 +24,26 @@ namespace TriFighter.Terrain {
         private GameObject _container;
         public GameObject WallContainer => _container;
 
-        public void Init(Transform parent, FloatRange width) {
+        public void Init(string containerName, Transform parent, LinePath path) {
             _parent = parent;
-            _width = width;
-            _colCount = 0;
+            _boundaryPath = path;
 
-            _name = $"Walls ({_size.x} : {_size.y})";
+            _name = containerName;
 
             _container = new GameObject(_name);
             _container.transform.SetParent(_parent);
-        }
-        
-        private void OnEnable() {
-            _walls = new Dictionary<int, IWall>();
-        }
-
-        public void AddWalls(Vector3 wallPosition) {
-            var wall = GenerateBoundary();
-            var index = _walls.Count;
-            _walls.Add(index, wall);
-            _colCount++;
-        }
-
-        public void AddBoundary(Vector3 wallPosition) {
-            if (!_walls.ContainsKey(_colCount)) {
-                AddWalls(wallPosition);
-                return;
-            }
             
-            //if (_width.IsInRange(_walls[_colCount].GameObjectPosition.x))
-            //    return;
-
+            _walls = new Dictionary<int, IWall>();
+            for (var i = 0; i < (int)path.Distance; i++) {
+                if (i % 2 == 0) continue;
+                
+                var wall = GenerateBoundary();
+                var pos = new Vector3(path.Source.x - i, path.Source.y);
+                wall.SetPosition(pos);
+                _walls.Add(i, wall);
+            }
         }
-        
+
         public void SetContainerPosition(Vector2Int pos) {
             var offset = new Vector3(pos.x, 0, pos.y);
 
@@ -70,27 +54,20 @@ namespace TriFighter.Terrain {
             }
         }
 
-        public void TranslateBy() {
-            foreach (var wall in _walls) {
-                var wallTransform = wall.Value.GetGameObject.transform;
-                wallTransform.Translate(Vector3.left);
-
-                var wallPosition = wallTransform.position;
-                if (_width.IsInRange(wallPosition.x))
-                    continue;
+        public void CycleBoundary() {
+            foreach (var wall in _walls.Values) {
+                wall.MoveLeft();
                 
-                wallPosition.x = _width.max;
-                wallTransform.position = wallPosition;
+                if (!_boundaryPath.ContainsX(wall.GameObjectPosition.x)) 
+                    wall.SetPosition(_boundaryPath.Source);
             }
         }
 
         private IWall GenerateBoundary() {
-            var wallGO = Instantiate(
+            return Instantiate(
                 IoC.Resolve<IWall>().GetGameObject,
                 _container.transform
-            );
-
-            return wallGO.GetComponent<IWall>();
+            ).GetComponent<IWall>();
         }
     }
 }

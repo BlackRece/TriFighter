@@ -54,6 +54,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.6878049&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -112,6 +113,9 @@
       <workItem from="1654764206923" duration="24114000" />
       <workItem from="1654857432518" duration="22433000" />
       <workItem from="1655041959699" duration="13241000" />
+      <workItem from="1655121671503" duration="2776000" />
+      <workItem from="1655371240099" duration="19088000" />
+      <workItem from="1655540218708" duration="14433000" />
     </task>
     <servers />
   </component>
@@ -140,17 +144,43 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/MovementController.cs</url>
-          <line>37</line>
-          <properties documentPath="D:\Documents\GitHub\TriFighter\Unity.TriFighter\Assets\TriFighter\SpaceCraft\MovementController.cs" initialLine="32" containingFunctionPresentation="method 'MoveByInput'">
+          <url>file://$PROJECT_DIR$/Assets/TriFighter/Terrain/TerrainController.cs</url>
+          <line>21</line>
+          <properties documentPath="D:\Documents\GitHub\TriFighter\Unity.TriFighter\Assets\TriFighter\Terrain\TerrainController.cs" initialLine="32" containingFunctionPresentation="method 'Init'">
             <startOffsets>
-              <option value="1164" />
+              <option value="644" />
             </startOffsets>
             <endOffsets>
-              <option value="1214" />
+              <option value="811" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="2" />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/TriFighter/Terrain/TerrainManager.cs</url>
+          <line>36</line>
+          <properties documentPath="D:\Documents\GitHub\TriFighter\Unity.TriFighter\Assets\TriFighter\Terrain\TerrainManager.cs" initialLine="20" containingFunctionPresentation="method 'Start'">
+            <startOffsets>
+              <option value="1269" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1314" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Area.cs</url>
+          <line>38</line>
+          <properties documentPath="D:\Documents\GitHub\TriFighter\Unity.TriFighter\Assets\TriFighter\Terrain\Areas\Area.cs" initialLine="41" containingFunctionPresentation="method 'CreateSpace'">
+            <startOffsets>
+              <option value="926" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1061" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

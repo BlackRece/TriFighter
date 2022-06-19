@@ -44,6 +44,7 @@ namespace TriFighter {
             if (isNotZero) Log($"Move speed after clamp: {_moveSpeed}");
 
             MoveBy();
+            LimitByArea();
         }
 
         private void ApplyInput(Vector3 input) => 
@@ -80,6 +81,12 @@ namespace TriFighter {
 
         private void MoveBy() => _transform.Translate(_moveSpeed * Time.deltaTime);
 
+        private void LimitByArea() {
+            var position = _transform.position;
+            position.x = Mathf.Clamp(position.x, -5f, 5f);
+            _transform.position = position;
+        }
+        
         private void NotifyMove(object publishEvent) {
             var noticeevent = publishEvent as MoveTargetEvent;
             
