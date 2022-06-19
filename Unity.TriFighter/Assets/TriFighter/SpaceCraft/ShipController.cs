@@ -7,6 +7,7 @@ using TriFighter.Types;
 using UnityEngine;
 
 namespace TriFighter {
+    [RequireComponent(typeof(Collider), typeof(Rigidbody))]
     public sealed class ShipController : MonoBehaviour {
         [SerializeField] private bool DEBUG;
         [SerializeField] private StringEvent _debugMsgEvent;
@@ -93,8 +94,8 @@ namespace TriFighter {
             if(_hasAIInput)
                 return;
 
-            NotifyDisplay($"Axis: {_inputController.Axis.x}:{_inputController.Axis.y}");
-            NotifyDisplay($"Position: {_lastPosition.x}:{_lastPosition.y}");
+            //NotifyDisplay($"Axis: {_inputController.Axis.x}:{_inputController.Axis.y}");
+            //NotifyDisplay($"Position: {_lastPosition.x}:{_lastPosition.y}");
 
             CameraController.UpdatePlayerPosition(_lastPosition);
 
@@ -109,18 +110,28 @@ namespace TriFighter {
         }
 
         private void OnCollisionEnter(Collision collision) {
-            transform.position = _lastPosition;
+            
+            _movementController.ApplyCollisionWith(collision.transform.position);
+            NotifyImmediate($"COLLISION: {collision.gameObject.name}");
+            //Log($"Collision with {collision.gameObject.name}");
         }
 
         private void NotifyDisplay(string message) {
-            if (_debugMsgEvent == null)
-                return;
-
             if ((_delay -= Time.deltaTime) > 0)
                 return;
 
             _delay = MAX_DELAY;
+            NotifyImmediate(message);
+        }
+
+        private void NotifyImmediate(string message) {
+            if (_debugMsgEvent == null) return;
             _debugMsgEvent.Raise(message);
+        }
+        
+        private void Log(string message) {
+            if (DEBUG)
+                Debug.Log(message);
         }
     }
 

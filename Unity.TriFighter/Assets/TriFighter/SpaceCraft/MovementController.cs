@@ -7,6 +7,7 @@ namespace TriFighter {
         Vector3 MoveSpeed { get; }
         bool DEBUG { get; set; }
         void MoveByInput(Vector3 inputAxis);
+        void ApplyCollisionWith(Vector3 target);
     }
     
     public sealed class MovementController : IMovementController {
@@ -33,7 +34,7 @@ namespace TriFighter {
             _moveSpeed = new Vector2();
             _dragSpeed = _maxMoveSpeed * DRAG_RATIO;
             
-            Log($"Drag: {_dragSpeed}");
+            //Log($"Drag: {_dragSpeed}");
         }
 
         public void MoveByInput(Vector3 inputAxis) {
@@ -41,17 +42,29 @@ namespace TriFighter {
             var preInputmoveSpeed = _moveSpeed;
             ApplyInput(inputAxis);
 
-            if (isNotZero) {
-                Log($"Move speed pre input: {preInputmoveSpeed}");
-                Log($"Move speed after input: {_moveSpeed}");
-            }
+            // if (isNotZero) {
+            //     Log($"Move speed pre input: {preInputmoveSpeed}");
+            //     Log($"Move speed after input: {_moveSpeed}");
+            // }
             
             ApplyDrag();
             ClampSpeed();
-            if (isNotZero) Log($"Move speed after clamp: {_moveSpeed}");
+            //if (isNotZero) Log($"Move speed after clamp: {_moveSpeed}");
 
             MoveBy();
             LimitByArea();
+        }
+
+        public void ApplyCollisionWith(Vector3 target) {
+            var position = _transform.position;
+            
+            if (position.x < target.x) _moveSpeed.x = -_maxMoveSpeed;
+            if (position.x > target.x) _moveSpeed.x = +_maxMoveSpeed;
+            
+            if (position.y < target.y) _moveSpeed.y = -_maxMoveSpeed;
+            if (position.y > target.y) _moveSpeed.y = +_maxMoveSpeed;
+            
+            MoveBy();
         }
 
         private void ApplyInput(Vector3 input) => 

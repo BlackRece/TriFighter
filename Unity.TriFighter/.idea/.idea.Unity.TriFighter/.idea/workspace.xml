@@ -117,7 +117,7 @@
       <workItem from="1655121671503" duration="2776000" />
       <workItem from="1655371240099" duration="19088000" />
       <workItem from="1655540218708" duration="14433000" />
-      <workItem from="1655627886118" duration="13895000" />
+      <workItem from="1655627886118" duration="19441000" />
     </task>
     <servers />
   </component>
@@ -141,6 +141,25 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/ShipController.cs</url>
+          <line>114</line>
+          <properties documentPath="D:\Documents\GitHub\TriFighter\Unity.TriFighter\Assets\TriFighter\SpaceCraft\ShipController.cs" initialLine="111" containingFunctionPresentation="method 'OnCollisionEnter'">
+            <startOffsets>
+              <option value="4303" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4303" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
