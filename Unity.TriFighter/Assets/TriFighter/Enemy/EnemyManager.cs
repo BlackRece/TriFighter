@@ -2,14 +2,15 @@
 
 namespace TriFighter {
     public sealed class EnemyManager : MonoBehaviour {
+        [SerializeField] private bool DEBUG = false;
         [SerializeField] private int _enemyPoolSize = 20;
         [SerializeField] private GameObjectPooler _enemyPooler;
+        
+        [SerializeField] private float _startDelay = 1f;
+        [SerializeField] private float _repeatDelay = 1f;
 
         private bool _spawned = false;
         
-        private float _startDelay = 1f;
-        private float _repeatDelay = 1f;
-
         private void Awake() {
             _enemyPooler.Init("Enemy Container", _enemyPoolSize);
             
@@ -30,7 +31,15 @@ namespace TriFighter {
             enemy.transform.position = GetRandomSpawnPosition();
             enemy.SetActive(true);
             
-            Debug.Log("spawned enemy");
+            Log("spawned enemy");
+        }
+        
+        private void SpawnEnemy(Vector3 target) {
+            var enemy = _enemyPooler.GetGameObject();
+            enemy.transform.position = target;
+            enemy.SetActive(true);
+            
+            Log("spawned enemy");
         }
 
         private void SpawnLineOfEnemies(int amountOfEnemies, float spacing = 2f) {
@@ -42,12 +51,10 @@ namespace TriFighter {
                     spawnPosition.y
                 );
 
-                var enemy = _enemyPooler.GetGameObject();
-                enemy.transform.position = offsetPosition;
-                enemy.SetActive(true);
+                SpawnEnemy(offsetPosition);
             }
             
-            Debug.Log("spawned line of enemies");
+            Log("spawned line of enemies");
         }
 
         private void Tick() {
@@ -56,6 +63,10 @@ namespace TriFighter {
                 SpawnLineOfEnemies(5);
                 _spawned = true;
             }
+        }
+        
+        private void Log(string msg) {
+            if(DEBUG) Debug.Log(msg);
         }
     }
 }

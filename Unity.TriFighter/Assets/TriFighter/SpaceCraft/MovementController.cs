@@ -1,4 +1,4 @@
-﻿using System;
+﻿using TriFighter.Types;
 
 using UnityEngine;
 
@@ -12,20 +12,27 @@ namespace TriFighter {
     public sealed class MovementController : IMovementController {
         private const float DRAG_RATIO = 0.02f;
         private readonly Transform _transform;
+        private readonly FloatRange _playRange;
         private readonly float _maxMoveSpeed;
-        private Vector3 _moveSpeed;
         private readonly float _dragSpeed;
+        private Vector3 _moveSpeed;
 
         public Vector3 MoveSpeed => _moveSpeed;
         public bool DEBUG { get; set; }
             
+        public struct MovementLimitData {
+            public float MaxMoveSpeed { get; set; }
+            public FloatRange PlayRange { get; set; }
+        }
 
-        public MovementController(Transform transform, float maxMoveSpeed) {
+        public MovementController(Transform transform, MovementLimitData limitData) {
             _transform = transform;
-            _maxMoveSpeed = maxMoveSpeed;
-            _moveSpeed = new Vector2();
+            _maxMoveSpeed = limitData.MaxMoveSpeed;
+            _playRange = limitData.PlayRange;
             
+            _moveSpeed = new Vector2();
             _dragSpeed = _maxMoveSpeed * DRAG_RATIO;
+            
             Log($"Drag: {_dragSpeed}");
         }
 
@@ -83,7 +90,7 @@ namespace TriFighter {
 
         private void LimitByArea() {
             var position = _transform.position;
-            position.x = Mathf.Clamp(position.x, -25f, -5f);
+            position.x = Mathf.Clamp(position.x, _playRange.min, _playRange.max);
             _transform.position = position;
         }
         

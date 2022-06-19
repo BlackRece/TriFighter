@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f16ef10f9e4e5db80dbb5f8cb2642b, type: 3}
   m_Name: Default Enemy Manager
   m_EditorClassIdentifier: 
+  DEBUG: 0
   _enemyPoolSize: 20
+  _enemyPooler: {fileID: 0}
+  _startDelay: 1
+  _repeatDelay: 1

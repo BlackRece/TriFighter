@@ -125,10 +125,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa4f5e54372ab104e999b26778f773af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DEBUG: 0
   _aiInputController: {fileID: 0}
   _aiCursorController: {fileID: 0}
+  _aiWeaponController: {fileID: 0}
+  _debugMsgEvent: {fileID: 11400000, guid: 3ccd36c4727ba8a479955d5791d2fde4, type: 2}
   _bulletPrefab: {fileID: 2872568730295086808, guid: f51c62f4bdb7240468d6e55dbe574764,
     type: 3}
-  DEBUG_Mouse: {x: 0, y: 0, z: 0}
-  DEBUG_Cursor: {x: 0, y: 0, z: 0}
-  DEBUG_Cam: {x: 0, y: 0, z: 0}
+  _bulletSpeed: 5
+  _maxMoveSpeed: 2
+  _startingPosition: {x: -25, y: 0, z: 0}
+  DEBUG_Axis: {x: 0, y: 0}
+  DEBUG_Speed: {x: 0, y: 0, z: 0}
+  DEBUG_Position: {x: 0, y: 0, z: 0}

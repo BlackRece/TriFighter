@@ -31,6 +31,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e8645a79b0794e0e9a2b5bbff081b88a128000/e0/fe0c24b5/UnityEvent`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e8645a79b0794e0e9a2b5bbff081b88a128000/eb/1b36dc88/Rect.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/TriFighter/DebugDisplay/MessageLogger.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/TriFighter/Enemy/EnemyManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -83,10 +84,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="4324">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="4324" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -116,7 +117,7 @@
       <workItem from="1655121671503" duration="2776000" />
       <workItem from="1655371240099" duration="19088000" />
       <workItem from="1655540218708" duration="14433000" />
-      <workItem from="1655627886118" duration="4038000" />
+      <workItem from="1655627886118" duration="13895000" />
     </task>
     <servers />
   </component>
@@ -140,51 +141,6 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/TriFighter/Terrain/TerrainController.cs</url>
-          <line>21</line>
-          <properties documentPath="D:\Documents\GitHub\TriFighter\Unity.TriFighter\Assets\TriFighter\Terrain\TerrainController.cs" initialLine="32" containingFunctionPresentation="method 'Init'">
-            <startOffsets>
-              <option value="644" />
-            </startOffsets>
-            <endOffsets>
-              <option value="811" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/TriFighter/Terrain/TerrainManager.cs</url>
-          <line>36</line>
-          <properties documentPath="D:\Documents\GitHub\TriFighter\Unity.TriFighter\Assets\TriFighter\Terrain\TerrainManager.cs" initialLine="20" containingFunctionPresentation="method 'Start'">
-            <startOffsets>
-              <option value="1269" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1314" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/TriFighter/Terrain/Areas/Area.cs</url>
-          <line>38</line>
-          <properties documentPath="D:\Documents\GitHub\TriFighter\Unity.TriFighter\Assets\TriFighter\Terrain\Areas\Area.cs" initialLine="41" containingFunctionPresentation="method 'CreateSpace'">
-            <startOffsets>
-              <option value="926" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1061" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

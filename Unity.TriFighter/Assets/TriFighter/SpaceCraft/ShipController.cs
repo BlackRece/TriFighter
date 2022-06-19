@@ -2,27 +2,29 @@
 
 using BlackRece.Events;
 
+using TriFighter.Types;
+
 using UnityEngine;
 
 namespace TriFighter {
     public sealed class ShipController : MonoBehaviour {
         [SerializeField] private bool DEBUG;
+        [SerializeField] private StringEvent _debugMsgEvent;
+        
         [SerializeField] private AIInputController _aiInputController;
         [SerializeField] private AICursorController _aiCursorController;
         [SerializeField] private AIWeaponController _aiWeaponController;
-
-        [SerializeField] private StringEvent _debugMsgEvent;
 
         [SerializeField] private GameObject _bulletPrefab;
         [SerializeField] private float _bulletSpeed = 5f;
 
         [SerializeField] private float _maxMoveSpeed = 0.1f;
         [SerializeField] private Vector3 _startingPosition = new Vector3(-15, 0, 0);
+        [SerializeField] private FloatRange _playRange = new FloatRange(-30f, -5f);
 
         private IInputController _inputController;
         private ICursorController _cursorController;
         private IMovementController _movementController;
-        
         private IWeaponController _weaponController;
 
         private bool _hasAIInput => _aiInputController != null;
@@ -47,10 +49,18 @@ namespace TriFighter {
                 : new CursorController();
             
             _cursorController.CreateMarker("TargetMarker", transform);
+
+            var limitData = _hasAIInput
+                ? new MovementController.MovementLimitData {
+                    MaxMoveSpeed = _aiInputController.MaxMoveSpeed,
+                    PlayRange = _aiInputController.PlayArea
+                }
+                : new MovementController.MovementLimitData {
+                    MaxMoveSpeed = _maxMoveSpeed,
+                    PlayRange = _playRange
+                };
             
-            _movementController = _hasAIInput
-                ? new MovementController(transform, _aiInputController.MaxMoveSpeed)
-                : new MovementController(transform, _maxMoveSpeed);
+            _movementController = new MovementController(transform, limitData);
 
             if (_bulletPrefab == null)
                 throw new ArgumentNullException(

@@ -1,21 +1,23 @@
-﻿using UnityEngine;
+﻿using TriFighter.Types;
+
+using UnityEngine;
 
 namespace TriFighter {
     [CreateAssetMenu(menuName = "TriFighter Objects/AI Controllers/New AI InputController")]
     public sealed class AIInputController : ScriptableObject, IInputController {
-        private Vector2 _axis;
+        public FloatRange PlayArea => _playArea;
         public Vector2 Axis => _axis;
+        public float MaxMoveSpeed => _maxMoveSpeed;
 
-        private Vector3 _mousePosition;
         public Vector3 MousePosition => _mousePosition;
-
-        private bool _mouseButtonLeft;
         public bool MouseButtonLeft => _mouseButtonLeft;
-
         public ISubscriber EventQueue { get; private set; }
 
+        private readonly FloatRange _playArea = new FloatRange(-100, +100);
+        private Vector2 _axis;
+        private Vector3 _mousePosition;
+        private bool _mouseButtonLeft;
         private float _maxMoveSpeed;
-        public float MaxMoveSpeed => _maxMoveSpeed;
 
         public void Update() {
             _axis.Set(
