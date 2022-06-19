@@ -1,25 +1,14 @@
-﻿using System;
-
-using TriFighter.Terrain;
+﻿using TriFighter.Terrain;
 
 using UnityEngine;
 
 namespace TriFighter {
     
     public class GeneralManager : MonoBehaviour {
-        //[SerializeField] private EnemyManager _enemyManager = null;
-        //[SerializeField] private GameObject _enemyManager = null;
-        
         private bool _tutorialComplete = false;
         private DependencyManager _dependencyResolver;
 
         private void Awake() {
-            // if (_enemyManager == null) {
-            //     throw new ArgumentNullException(
-            //         nameof(_enemyManager),
-            //         "No [EnemyManager] game object assigned."); 
-            // }
-            
             _dependencyResolver = new DependencyManager();
             IoC.Initialise(_dependencyResolver);
         }

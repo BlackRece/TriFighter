@@ -12,5 +12,6 @@ namespace TriFighter.Types {
         }
 
         public bool IsInRange(float value) => value >= min && value <= max;
+        public float Delta() => max - min;
     }
 }

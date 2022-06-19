@@ -1,28 +1,46 @@
-﻿using UnityEngine;
+﻿using System;
+
+using UnityEngine;
+
+using Random = UnityEngine.Random;
 
 namespace TriFighter {
     public sealed class EnemyManager : MonoBehaviour {
         [SerializeField] private bool DEBUG = false;
+        
         [SerializeField] private int _enemyPoolSize = 20;
         [SerializeField] private GameObjectPooler _enemyPooler;
         
         [SerializeField] private float _startDelay = 1f;
         [SerializeField] private float _repeatDelay = 1f;
+        
+        [SerializeField] private Transform _topRight, _botRight;
 
         private bool _spawned = false;
+
+        public void OnPlayerPositionBroadCast(Vector3 position) {
+            var activeEnemies = _enemyPooler.GetActiveObjects();
+            foreach (var enemyGO in activeEnemies) {
+                if (!enemyGO.TryGetComponent(out AIInputController enemyAI))
+                    continue;
+
+                enemyAI.UpdateTargetPosition(position);
+            }
+        }
         
         private void Awake() {
+            if (_topRight == null || _botRight == null)
+                throw new NullReferenceException("Not all [PlayArea Transform Markers] attached!");
+
             _enemyPooler.Init("Enemy Container", _enemyPoolSize);
             
             InvokeRepeating(nameof(Tick), _startDelay, _repeatDelay);
         }
 
         private Vector3 GetRandomSpawnPosition() {
-            var worldRect = CameraController.PlayArea;
-
             return new Vector3(
-                worldRect.xMax,
-                Random.Range(worldRect.yMin, worldRect.yMax)
+                _topRight.position.x,
+                Random.Range(_topRight.position.y + 1, _botRight.position.y - 1)
             );
         }
 
@@ -38,14 +56,17 @@ namespace TriFighter {
             var enemy = _enemyPooler.GetGameObject();
             enemy.transform.position = target;
             enemy.SetActive(true);
+
+            var enemyAI = enemy.GetComponent<ShipController>();
+            enemyAI.AIInputController.SetMaxMoveSpeed(0.5f);
             
             Log("spawned enemy");
         }
 
         private void SpawnLineOfEnemies(int amountOfEnemies, float spacing = 2f) {
-            var spawnPosition = GetRandomSpawnPosition();
-            
             for (var i = 0; i < amountOfEnemies; i++) {
+                var spawnPosition = GetRandomSpawnPosition();
+            
                 var offsetPosition = new Vector3(
                     spawnPosition.x + spacing * i,
                     spawnPosition.y

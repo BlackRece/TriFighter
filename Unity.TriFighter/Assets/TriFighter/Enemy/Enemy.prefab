@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4195670330252156167}
   - component: {fileID: 3975325290304199375}
   - component: {fileID: 616340842527575741}
+  - component: {fileID: 8199497436689619506}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemies
@@ -121,11 +122,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa4f5e54372ab104e999b26778f773af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DEBUG: 0
+  _debugMsgEvent: {fileID: 0}
+  _positionEvent: {fileID: 0}
   _aiInputController: {fileID: 11400000, guid: cadc3280588ebac42b71143a541bd0ff, type: 2}
   _aiCursorController: {fileID: 11400000, guid: 5022fd72f1f3df94c8f74f6fbdce17d5,
     type: 2}
+  _aiWeaponController: {fileID: 0}
   _bulletPrefab: {fileID: 2872568730295086808, guid: f51c62f4bdb7240468d6e55dbe574764,
     type: 3}
-  DEBUG_Mouse: {x: 0, y: 0, z: 0}
-  DEBUG_Cursor: {x: 0, y: 0, z: 0}
-  DEBUG_Cam: {x: 0, y: 0, z: 0}
+  _bulletSpeed: 5
+  _maxMoveSpeed: 0.1
+  _startingPosition: {x: -15, y: 0, z: 0}
+  _playRange:
+    min: -30
+    max: -5
+  DEBUG_Axis: {x: 0, y: 0}
+  DEBUG_Speed: {x: 0, y: 0, z: 0}
+  DEBUG_Position: {x: 0, y: 0, z: 0}
+--- !u!54 &8199497436689619506
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4799682378291154720}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 120
+  m_CollisionDetection: 0

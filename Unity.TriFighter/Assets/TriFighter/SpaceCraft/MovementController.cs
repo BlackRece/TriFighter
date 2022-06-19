@@ -1,4 +1,5 @@
-﻿using TriFighter.Types;
+﻿using TriFighter.Terrain;
+using TriFighter.Types;
 
 using UnityEngine;
 
@@ -17,6 +18,7 @@ namespace TriFighter {
         private readonly float _maxMoveSpeed;
         private readonly float _dragSpeed;
         private Vector3 _moveSpeed;
+        private FloatRange _verticalRange;
 
         public Vector3 MoveSpeed => _moveSpeed;
         public bool DEBUG { get; set; }
@@ -67,8 +69,7 @@ namespace TriFighter {
             MoveBy();
         }
 
-        private void ApplyInput(Vector3 input) => 
-            _moveSpeed += input;
+        private void ApplyInput(Vector3 input) => _moveSpeed += input;
 
         private void ApplyDrag() {
             if (_moveSpeed.x < 0) {
@@ -102,8 +103,10 @@ namespace TriFighter {
         private void MoveBy() => _transform.Translate(_moveSpeed * Time.deltaTime);
 
         private void LimitByArea() {
+            var range = TerrainManager.VerticleRange;
             var position = _transform.position;
             position.x = Mathf.Clamp(position.x, _playRange.min, _playRange.max);
+            position.y = Mathf.Clamp(position.y, range.min + 1, range.max - 1);
             _transform.position = position;
         }
         

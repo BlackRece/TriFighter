@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using UnityEngine;
 
@@ -74,6 +75,12 @@ namespace TriFighter {
             var instance = Instantiate(_prefab, _container.transform);
             instance.SetActive(false);
             return instance;
+        }
+
+        public List<GameObject> GetActiveObjects() {
+            return _pool
+                .Where(obj => obj.activeSelf)
+                .ToList();
         }
     }
 }

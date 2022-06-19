@@ -1,3 +1,5 @@
+using TriFighter.Types;
+
 using UnityEngine;
 
 namespace TriFighter.Terrain {
@@ -11,7 +13,7 @@ namespace TriFighter.Terrain {
         private Transform _parentTransform;
 
         private Rect _boundary;
-        
+
         public void Init(Transform parentTransform, Rect spaceBoundary) {
             _parentTransform = parentTransform;
 

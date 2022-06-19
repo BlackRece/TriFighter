@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3879508042308263983}
   - component: {fileID: 20026763012238325}
+  - component: {fileID: 1568945652}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -44,11 +45,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f16ef10f9e4e5db80dbb5f8cb2642b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DEBUG: 0
+  DEBUG: 1
   _enemyPoolSize: 20
   _enemyPooler: {fileID: 11400000, guid: a7aa1ec0ef5840247bc3424cae1853c1, type: 2}
   _startDelay: 1
   _repeatDelay: 1
+  _topRight: {fileID: 0}
+  _botRight: {fileID: 0}
+--- !u!114 &1568945652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3879508042308263982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aba4cf3a5c851145ad288279a5113e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: e705719f745e066468c07d10070b3fe3, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &3879508043812318727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59,7 +78,7 @@ PrefabInstance:
     - target: {fileID: 3980327725172709102, guid: 00ce0d6020afa294a837e320fbe5c7eb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 7.25
       objectReference: {fileID: 0}
     - target: {fileID: 3980327725172709102, guid: 00ce0d6020afa294a837e320fbe5c7eb,
         type: 3}

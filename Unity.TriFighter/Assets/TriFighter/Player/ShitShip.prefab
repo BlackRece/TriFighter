@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DEBUG: 1
   _debugMsgEvent: {fileID: 11400000, guid: 3ccd36c4727ba8a479955d5791d2fde4, type: 2}
+  _positionEvent: {fileID: 0}
   _aiInputController: {fileID: 0}
   _aiCursorController: {fileID: 0}
   _aiWeaponController: {fileID: 0}

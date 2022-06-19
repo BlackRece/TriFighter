@@ -11,6 +11,7 @@ namespace TriFighter {
     public sealed class ShipController : MonoBehaviour {
         [SerializeField] private bool DEBUG;
         [SerializeField] private StringEvent _debugMsgEvent;
+        [SerializeField] private Vector3Event _positionEvent;
         
         [SerializeField] private AIInputController _aiInputController;
         [SerializeField] private AICursorController _aiCursorController;
@@ -21,6 +22,7 @@ namespace TriFighter {
 
         [SerializeField] private float _maxMoveSpeed = 0.1f;
         [SerializeField] private Vector3 _startingPosition = new Vector3(-15, 0, 0);
+
         [SerializeField] private FloatRange _playRange = new FloatRange(-30f, -5f);
 
         private IInputController _inputController;
@@ -31,7 +33,8 @@ namespace TriFighter {
         private bool _hasAIInput => _aiInputController != null;
         private bool _hasAICursor => _aiCursorController != null;
         private bool _hasAIWeapon => _aiWeaponController != null;
-        
+
+        public AIInputController AIInputController => _aiInputController;
         public Vector2 DEBUG_Axis;
         public Vector3 DEBUG_Speed;
         public Vector3 DEBUG_Position;
@@ -41,6 +44,8 @@ namespace TriFighter {
         private Vector3 _lastPosition;
 
         public void Start() {
+            var shipTransform = transform;
+
             _inputController = _hasAIInput
                 ? (IInputController) _aiInputController
                 : new InputController();
@@ -49,7 +54,7 @@ namespace TriFighter {
                 ? (ICursorController) _aiCursorController
                 : new CursorController();
             
-            _cursorController.CreateMarker("TargetMarker", transform);
+            _cursorController.CreateMarker("TargetMarker", shipTransform);
 
             var limitData = _hasAIInput
                 ? new MovementController.MovementLimitData {
@@ -60,8 +65,12 @@ namespace TriFighter {
                     MaxMoveSpeed = _maxMoveSpeed,
                     PlayRange = _playRange
                 };
+
+            _movementController = new MovementController(shipTransform, limitData);
             
-            _movementController = new MovementController(transform, limitData);
+            // TODO: Replace with animation of player flying into view...
+            if (!_hasAIInput)
+                shipTransform.position = _startingPosition;
 
             if (_bulletPrefab == null)
                 throw new ArgumentNullException(
@@ -71,15 +80,12 @@ namespace TriFighter {
             _weaponController = _hasAIWeapon
                 ? (IWeaponController) _aiWeaponController
                 : new WeaponController(_bulletPrefab, "Bullets", 0.5f);
-            
-            // TODO: Replace with animation of player flying into view...
-            transform.position = _startingPosition;
         }
 
         public void Update() {
             if (DEBUG != _movementController.DEBUG) _movementController.DEBUG = DEBUG;
             _lastPosition = transform.position;
-            
+
             _inputController.Update();
             var cursorPosition = _cursorController.UpdatePosition(_inputController.MousePosition);
             
@@ -91,8 +97,11 @@ namespace TriFighter {
 
             _weaponController.Update();
             
-            if(_hasAIInput)
+            if (_hasAIInput) {
+                _aiInputController.UpdateShipPosition(_lastPosition);
+                gameObject.SetActive(!_aiInputController.IsOutOfPlayArea);
                 return;
+            }
 
             //NotifyDisplay($"Axis: {_inputController.Axis.x}:{_inputController.Axis.y}");
             //NotifyDisplay($"Position: {_lastPosition.x}:{_lastPosition.y}");
@@ -114,6 +123,11 @@ namespace TriFighter {
             _movementController.ApplyCollisionWith(collision.transform.position);
             NotifyImmediate($"COLLISION: {collision.gameObject.name}");
             //Log($"Collision with {collision.gameObject.name}");
+        }
+
+        private void BroadCastPosition() {
+            if (_positionEvent == null) return;
+            _positionEvent.Raise(_lastPosition);
         }
 
         private void NotifyDisplay(string message) {

@@ -11,8 +11,6 @@ namespace TriFighter {
         Vector3 MousePosition { get; }
         bool MouseButtonLeft { get; }
         
-        ISubscriber EventQueue { get; }
-
         void Update();
     }
     
@@ -43,12 +41,6 @@ namespace TriFighter {
         
         private Dictionary<InputMouseButtons, bool> _mouseButtons;
         public Dictionary<InputMouseButtons, bool> MouseButtons => _mouseButtons;
-
-        public ISubscriber EventQueue { get; private set; }
-
-        public InputController() {
-            EventQueue = new PublisherSubscriber();
-        }
 
         public void Update() {
             _axis.Set(

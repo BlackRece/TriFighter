@@ -1,5 +1,7 @@
 ﻿using System;
 
+using TriFighter.Types;
+
 using UnityEngine;
 
 namespace TriFighter.Terrain {
@@ -7,8 +9,10 @@ namespace TriFighter.Terrain {
         [SerializeField] private TerrainController _terrainController;
         [SerializeField] private TerrainLibrary _terrainLib;
 
-        [SerializeField] private Transform _topLeft, _topRight, _botLeft, _botRight;   
+        [SerializeField] private Transform _topLeft, _topRight, _botLeft, _botRight;
 
+        public static FloatRange VerticleRange { get; private set; }
+        
         private void Awake() {
             if (_terrainController == null)
                 throw new NullReferenceException("No [Terrain Controller] attached!");
@@ -35,6 +39,7 @@ namespace TriFighter.Terrain {
             DEBUG_AreaMarker(playArea);
             
             _terrainController.Init(transform, playArea);
+            VerticleRange = new FloatRange(_botLeft.position.y, position.y);
         }
         
         private void Update() {
