@@ -17,6 +17,7 @@ namespace TriFighter {
         [SerializeField] private float _bulletSpeed = 5f;
 
         [SerializeField] private float _maxMoveSpeed = 0.1f;
+        [SerializeField] private Vector3 _startingPosition = new Vector3(-15, 0, 0);
 
         private IInputController _inputController;
         private ICursorController _cursorController;
@@ -59,6 +60,9 @@ namespace TriFighter {
             _weaponController = _hasAIWeapon
                 ? (IWeaponController) _aiWeaponController
                 : new WeaponController(_bulletPrefab, "Bullets", 0.5f);
+            
+            // TODO: Replace with animation of player flying into view...
+            transform.position = _startingPosition;
         }
 
         public void Update() {

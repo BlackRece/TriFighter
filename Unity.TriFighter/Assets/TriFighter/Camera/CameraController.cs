@@ -13,7 +13,8 @@ namespace TriFighter {
 
     [RequireComponent(typeof(Camera))]
     public class CameraController : MonoBehaviour, ICameraController, ITargetChecker {
-        [SerializeField] private static Vector3 offset = new Vector3(0, 0, -20f);
+        public static Vector3 offsetPosition = new Vector3(-5f, 0, -15f);
+        [SerializeField] private static Vector3 offsetRotation = new Vector3(0, 25, 0);
 
         private static Camera _cam;
         
@@ -59,7 +60,7 @@ namespace TriFighter {
         private Ray MouseRay(Camera cam) => _cam.ScreenPointToRay(Input.mousePosition);
 
         private void TrackPlayerMovement(Vector3 position) => 
-            _cam.transform.position = position + offset;
+            _cam.transform.position = position + offsetPosition;
 
         public LayerMask Target(string layerToTarget) => LayerMask.GetMask(layerToTarget);
 
@@ -73,13 +74,17 @@ namespace TriFighter {
             );
         
         public static Vector3 GetCursorPosition(Vector3 targetPosition) => 
-            _cam.ScreenToWorldPoint(targetPosition - offset);
+            _cam.ScreenToWorldPoint(targetPosition - offsetPosition);
 
         public static void UpdatePlayerPosition(Vector3 position) =>
-            _cam.transform.position = position + offset;
+            _cam.transform.position = position + offsetPosition;
+        
+        public static void UpdateCameraRotation() =>
+            _cam.transform.rotation = Quaternion.Euler(offsetRotation);
 
         private void Awake() {
             _cam = Camera.main;
+            UpdateCameraRotation();
         }
     }
 

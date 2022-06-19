@@ -83,7 +83,7 @@ namespace TriFighter {
 
         private void LimitByArea() {
             var position = _transform.position;
-            position.x = Mathf.Clamp(position.x, -5f, 5f);
+            position.x = Mathf.Clamp(position.x, -25f, -5f);
             _transform.position = position;
         }
         
