@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c70a6ea2-1b5b-470c-a40f-6701a3c709bd" name="Changes" comment="" />
+    <list default="true" id="c70a6ea2-1b5b-470c-a40f-6701a3c709bd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Unity.TriFighter/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Unity.TriFighter/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/Enemy/Enemy.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/Enemy/Enemy.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/WeaponController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TriFighter/SpaceCraft/WeaponController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,10 +91,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="5828">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="5828" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -118,7 +124,8 @@
       <workItem from="1655121671503" duration="2776000" />
       <workItem from="1655371240099" duration="19088000" />
       <workItem from="1655540218708" duration="14433000" />
-      <workItem from="1655627886118" duration="43902000" />
+      <workItem from="1655627886118" duration="44210000" />
+      <workItem from="1657659798144" duration="1035000" />
     </task>
     <servers />
   </component>

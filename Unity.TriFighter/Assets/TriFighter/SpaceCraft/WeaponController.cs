@@ -34,7 +34,7 @@ namespace TriFighter {
             var bullet = _bulletPool.GetBullet();
             bullet.Launch(new LaunchData {
                 origin = bulletData.Origin,
-                direction = bulletData.GetDirection(),
+                direction = bulletData.Direction,
                 lifeTime = 10f,
                 speed = bulletData.Speed,
             });
@@ -63,6 +63,6 @@ namespace TriFighter {
         
         public float Speed { get; set; }
 
-        public Vector3 GetDirection() => (Target - Origin).normalized;
+        public Vector3 Direction => Vector3.right;
     }
 }
