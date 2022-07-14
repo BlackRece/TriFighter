@@ -119,7 +119,8 @@ namespace TriFighter {
         }
 
         private void OnCollisionEnter(Collision collision) {
-            
+            if (!gameObject.activeSelf)
+                return;
             _movementController.ApplyCollisionWith(collision.transform.position);
             NotifyImmediate($"COLLISION: {collision.gameObject.name}");
             //Log($"Collision with {collision.gameObject.name}");

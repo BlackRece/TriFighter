@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+
+using UnityEngine;
 
 namespace TriFighter {
     public interface IBullet {
@@ -12,6 +14,8 @@ namespace TriFighter {
         public bool IsActive => gameObject.activeSelf;
 
         public GameObject Prefab => gameObject;
+
+        private const bool DEBUG = true;
         
         private Vector3 _direction;
         private float _speed = 2f;
@@ -42,7 +46,10 @@ namespace TriFighter {
         }
 
         private void OnCollisionEnter(Collision other) {
-            if (other.gameObject.TryGetComponent(typeof (IEnemy), out var enemy)) 
+            if(DEBUG)
+                Debug.Log($"Bullet hit {other.gameObject.name}");
+            
+            if (other.gameObject.TryGetComponent(out IEnemy enemy)) 
                 HideBullet();
         }
     }
