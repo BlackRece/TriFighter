@@ -2,6 +2,7 @@
 
 using BlackRece.Events;
 
+using TriFighter.FuSM;
 using TriFighter.Types;
 
 using UnityEngine;
@@ -17,13 +18,14 @@ namespace TriFighter {
         [SerializeField] private AICursorController _aiCursorController;
         [SerializeField] private AIWeaponController _aiWeaponController;
 
+        [SerializeField] private Transform _projectileOrigin;
         [SerializeField] private GameObject _bulletPrefab;
         [SerializeField] private float _bulletSpeed = 5f;
 
         [SerializeField] private float _maxMoveSpeed = 0.1f;
         [SerializeField] private Vector3 _startingPosition = new Vector3(-15, 0, 0);
 
-        [SerializeField] private FloatRange _playRange = new FloatRange(-30f, -5f);
+        [SerializeField] private FloatRange _playRange = new FloatRange(-30f, -5f, true);
 
         private IInputController _inputController;
         private ICursorController _cursorController;
@@ -40,28 +42,33 @@ namespace TriFighter {
         public Vector3 DEBUG_Position;
         
         private float _delay;
+        private bool _shipActive;
         private float MAX_DELAY = 1f;
         private Vector3 _lastPosition;
 
+        public bool IsShipActive => _shipActive;
+
         public void Start() {
+            
+            if (_bulletPrefab == null)
+                throw new ArgumentNullException(
+                    nameof(_bulletPrefab),
+                    "No [BULLET] game object selected.");
+
+            if (ConfigureAIControllers())
+                return;
+            
+            SetShipToActive(true);
+
             var shipTransform = transform;
 
-            _inputController = _hasAIInput
-                ? (IInputController) _aiInputController
-                : new InputController();
+            _inputController = new InputController();
 
-            _cursorController = _hasAICursor
-                ? (ICursorController) _aiCursorController
-                : new CursorController();
+            _cursorController = new CursorController();
             
             _cursorController.CreateMarker("TargetMarker", shipTransform);
 
-            var limitData = _hasAIInput
-                ? new MovementController.MovementLimitData {
-                    MaxMoveSpeed = _aiInputController.MaxMoveSpeed,
-                    PlayRange = _aiInputController.PlayArea
-                }
-                : new MovementController.MovementLimitData {
+            var limitData = new MovementController.MovementLimitData {
                     MaxMoveSpeed = _maxMoveSpeed,
                     PlayRange = _playRange
                 };
@@ -69,20 +76,28 @@ namespace TriFighter {
             _movementController = new MovementController(shipTransform, limitData);
             
             // TODO: Replace with animation of player flying into view...
-            if (!_hasAIInput)
-                shipTransform.position = _startingPosition;
+            shipTransform.position = _startingPosition;
 
-            if (_bulletPrefab == null)
-                throw new ArgumentNullException(
-                    nameof(_bulletPrefab),
-                    "No [BULLET] game object selected."); 
+            var projectileData = new ProjectileData {
+                Origin = _projectileOrigin,
+                Prefab = _bulletPrefab,
+                ContainerName = "Bullets",
+                FireDelay = 0.5f,
+                Speed = 5.0f
+            };
+
+            _weaponController = new WeaponController(projectileData);
             
-            _weaponController = _hasAIWeapon
-                ? (IWeaponController) _aiWeaponController
-                : new WeaponController(_bulletPrefab, "Bullets", 0.5f);
+            _weaponController = new WeaponController(
+                _bulletPrefab,
+                "Bullets",
+                0.5f
+                );
         }
-
+        
         public void Update() {
+            if (!_shipActive) return;
+            
             if (DEBUG != _movementController.DEBUG) _movementController.DEBUG = DEBUG;
             _lastPosition = transform.position;
 
@@ -118,6 +133,32 @@ namespace TriFighter {
             );
         }
 
+        public void SetShipToActive(bool state) => _shipActive = state;
+
+        private bool ConfigureAIControllers() {
+            if (!_hasAIInput)
+                return false;
+
+            _aiInputController.Init(StateIdentifier.Cruise, 1.0f);
+            
+            _inputController = (IInputController) _aiInputController;
+
+            _cursorController = (ICursorController) _aiCursorController;
+
+            var limitData = new MovementController.MovementLimitData {
+                MaxMoveSpeed = _aiInputController.MaxMoveSpeed,
+                PlayRange = _aiInputController.PlayArea
+            };
+
+            _movementController = new MovementController(transform, limitData);
+
+            _weaponController = _aiWeaponController;
+
+            SetShipToActive(false);
+            
+            return _hasAIInput;
+        }
+        
         private void OnCollisionEnter(Collision collision) {
             if (!gameObject.activeSelf)
                 return;

@@ -1,8 +1,10 @@
 ﻿using System;
 
+using TriFighter.Types;
+
 using UnityEngine;
 
-using Random = UnityEngine.Random;
+using RND = UnityEngine.Random;
 
 namespace TriFighter {
     public sealed class EnemyManager : MonoBehaviour {
@@ -14,7 +16,7 @@ namespace TriFighter {
         [SerializeField] private float _startDelay = 1f;
         [SerializeField] private float _repeatDelay = 1f;
         
-        [SerializeField] private Transform _topRight, _botRight;
+        [SerializeField] private Transform _botLeft, _topRight, _botRight;
 
         private bool _spawned = false;
 
@@ -29,7 +31,7 @@ namespace TriFighter {
         }
         
         private void Awake() {
-            if (_topRight == null || _botRight == null)
+            if (_botLeft == null || _topRight == null || _botRight == null)
                 throw new NullReferenceException("Not all [PlayArea Transform Markers] attached!");
 
             _enemyPooler.Init("Enemy Container", _enemyPoolSize);
@@ -38,9 +40,19 @@ namespace TriFighter {
         }
 
         private Vector3 GetRandomSpawnPosition() {
+            var enemyGO = _enemyPooler.GetGameObject();
+            var enemyObj = enemyGO.GetComponent<IEnemy>();
+            var enemySize = enemyObj.PrefabSize;
+            var enemyHeight = enemySize.y;
+            
+            var yRange = new FloatRange(
+                _botRight.position.y + enemyHeight,
+                _topRight.position.y - enemyHeight
+            );
+
             return new Vector3(
                 _topRight.position.x,
-                Random.Range(_topRight.position.y + 1, _botRight.position.y - 1)
+                RND.Range(yRange.min, yRange.max)
             );
         }
 
@@ -53,12 +65,18 @@ namespace TriFighter {
         }
         
         private void SpawnEnemy(Vector3 target) {
-            var enemy = _enemyPooler.GetGameObject();
-            enemy.transform.position = target;
-            enemy.SetActive(true);
+            var enemyObject = _enemyPooler.GetGameObject();
+            enemyObject.transform.position = target;
+            enemyObject.SetActive(true);
 
-            var enemyAI = enemy.GetComponent<ShipController>();
-            enemyAI.AIInputController.SetMaxMoveSpeed(0.5f);
+            //var enemyController = enemy.GetComponent<IEnemyController>();
+            //var enemy = enemyObject.GetComponent<IEnemy>();
+            
+            var enemyShip = enemyObject.GetComponent<ShipController>();
+            var enemyInputController = enemyShip.AIInputController;
+            enemyInputController.SetMaxMoveSpeed(0.5f);
+            enemyInputController.SetPlayArea(_botLeft, _topRight);
+            enemyShip.SetShipToActive(true);
             
             Log("spawned enemy");
         }

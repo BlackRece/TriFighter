@@ -11,6 +11,8 @@ namespace TriFighter {
         private bool _isReadyToFire;
         private float _fireDelay;
         private readonly float _maxFireDelay;
+        private Vector3 _origin;
+        private float _speed;
 
         public WeaponController(GameObject bullet, string containerName, float maxFireDelay) {
             _maxFireDelay = maxFireDelay;
@@ -18,6 +20,16 @@ namespace TriFighter {
             
             _bulletPool = ScriptableObject.CreateInstance<GameObjectPooler>();
             _bulletPool.Init(bullet, containerName);
+        }
+        public WeaponController(ProjectileData projectileData) {
+            _maxFireDelay = projectileData.FireDelay;
+            _isReadyToFire = false;
+            
+            _bulletPool = ScriptableObject.CreateInstance<GameObjectPooler>();
+            _bulletPool.Init(projectileData.Prefab, projectileData.ContainerName);
+            _speed = projectileData.Speed;
+
+            _origin = projectileData.Origin.position;
         }
 
         public void Update() {
@@ -32,11 +44,18 @@ namespace TriFighter {
             _fireDelay = _maxFireDelay;
             
             var bullet = _bulletPool.GetBullet();
+            // bullet.Launch(new LaunchData {
+            //     origin = bulletData.Origin,
+            //     direction = bulletData.Direction,
+            //     lifeTime = 10f,
+            //     speed = bulletData.Speed,
+            // });
+
             bullet.Launch(new LaunchData {
-                origin = bulletData.Origin,
-                direction = bulletData.Direction,
+                origin = _origin,
+                direction = Vector3.right,
                 lifeTime = 10f,
-                speed = bulletData.Speed,
+                speed = _speed,
             });
         }
 
@@ -57,6 +76,15 @@ namespace TriFighter {
         }
     }
 
+    public sealed class ProjectileData {
+        public Transform Origin { get; set; }
+        public GameObject Prefab { get; set; }
+        public string ContainerName { get; set; }
+        public float FireDelay { get; set; }
+
+        public float Speed { get; set; }
+    }
+    
     public sealed class BulletData {
         public Vector3 Origin { get; set; }
         public Vector3 Target { get; set; }

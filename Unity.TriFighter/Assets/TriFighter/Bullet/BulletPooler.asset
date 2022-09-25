@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1aee69c97c242cf9cf92026f06707fe, type: 3}
   m_Name: BulletPooler
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 2872568730295086808, guid: f51c62f4bdb7240468d6e55dbe574764, type: 3}
+  _prefab: {fileID: 1954724374120698484, guid: 7b48e9b91e6cc874cb2a3a1c861da33f, type: 3}

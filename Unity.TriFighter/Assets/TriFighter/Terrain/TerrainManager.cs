@@ -39,7 +39,7 @@ namespace TriFighter.Terrain {
             DEBUG_AreaMarker(playArea);
             
             _terrainController.Init(transform, playArea);
-            VerticleRange = new FloatRange(_botLeft.position.y, position.y);
+            VerticleRange = new FloatRange(_botLeft.position.y, position.y, true);
         }
         
         private void Update() {

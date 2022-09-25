@@ -1,6 +1,4 @@
-﻿using UnityEditor;
-
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace TriFighter {
     public interface IBullet {
@@ -38,7 +36,7 @@ namespace TriFighter {
             if(!IsActive)
                 return;
             
-            transform.Translate(_direction * _speed * Time.deltaTime);
+            transform.Translate(_direction * (_speed * Time.deltaTime));
 
             _lifeTime -= Time.deltaTime;
             if(_lifeTime <= 0)
@@ -49,7 +47,7 @@ namespace TriFighter {
             if(DEBUG)
                 Debug.Log($"Bullet hit {other.gameObject.name}");
             
-            if (other.gameObject.TryGetComponent(out IEnemy enemy)) 
+            if (other.gameObject.TryGetComponent(out IEnemy _)) 
                 HideBullet();
         }
     }

@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15cc9f60508048c6a43d40f105c4a4a2, type: 3}
   m_Name: Enemy AI Input Controller
   m_EditorClassIdentifier: 
+  _stateLibrary: {fileID: 11400000, guid: 979d241896d20fa458870302bd0d669c, type: 2}
