@@ -8,16 +8,12 @@ namespace TriFighter.FuSM {
         ReactionData ReactionsData { get; }
         void Update();
         void UpdatePerceptions(PerceptionData perceptionData);
-        void Init();
     }
     
     public sealed class AIControl : IAIControl {
         public Machine Machine => _machine;
         public ReactionData ReactionsData => _reactionData;
-        //perception data
-        //(public so that states can share it)
-        private PerceptionData _perceptionData;
-        //data
+
         private Machine _machine;
         private Vector2 _axis;
         private ReactionData _reactionData;
@@ -31,16 +27,11 @@ namespace TriFighter.FuSM {
         }
 
         public void Update() {
-            UpdatePerceptions(_perceptionData);
-            _reactionData = _machine.UpdateMachine();
+            _reactionData = _machine.Update(_reactionData);
         }
 
         public void UpdatePerceptions(PerceptionData perceptionData) {
-            _perceptionData = perceptionData;
+            _machine.UpdatePerceptions(perceptionData);
         }
-
-        public void Init() { }
-
-        
     }
 }

@@ -21,7 +21,7 @@ namespace TriFighter.FuSM {
             throw new System.NotImplementedException();
         }
 
-        public void Update(ReactionData reactionData) {
+        public ReactionData Update(ReactionData reactionData) {
             throw new System.NotImplementedException();
         }
 

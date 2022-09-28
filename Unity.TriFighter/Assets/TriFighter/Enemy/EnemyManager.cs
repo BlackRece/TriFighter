@@ -68,9 +68,6 @@ namespace TriFighter {
             var enemyObject = _enemyPooler.GetGameObject();
             enemyObject.transform.position = target;
             enemyObject.SetActive(true);
-
-            //var enemyController = enemy.GetComponent<IEnemyController>();
-            //var enemy = enemyObject.GetComponent<IEnemy>();
             
             var enemyShip = enemyObject.GetComponent<ShipController>();
             var enemyInputController = enemyShip.AIInputController;

@@ -11,7 +11,7 @@ namespace TriFighter.FuSM {
         StateIdentifier StateID { get; }
         void Init(FloatRange activationRange);
         
-        void Update(ReactionData reactionData);
+        ReactionData Update(ReactionData reactionData);
         void Enter(ReactionData reactionData);
         void Exit(ReactionData reactionData);
 
@@ -59,7 +59,7 @@ namespace TriFighter.FuSM {
         }
         
         // state execution methods
-        public virtual void Update(ReactionData reactionData) { }
+        public virtual ReactionData Update(ReactionData reactionData) { }
         public virtual void Enter(ReactionData reactionData) {}
         public virtual void Exit(ReactionData reactionData) {}
 

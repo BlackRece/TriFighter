@@ -57,7 +57,7 @@ namespace TriFighter.FuSM {
 
         public void Enter(ReactionData reactionData) { }
         
-        public void Update(ReactionData reactionData) {
+        public ReactionData Update(ReactionData reactionData) {
             _reactionData.Axis = reactionData.Axis + Vector2.left;
         }
 

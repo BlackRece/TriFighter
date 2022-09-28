@@ -80,16 +80,16 @@ namespace TriFighter {
         }
 
         private void MoveToTargetPosition() {
-            var currentPossition = transform.position;
+            var currentPosition = transform.position;
 
             if (IsAtTargetPosition) {
-                if (currentPossition != _targetPosition)
+                if (currentPosition != _targetPosition)
                     transform.position = _targetPosition;
                 
                 return;
             }
 
-            var directionToTarget = (_targetPosition - currentPossition).normalized;
+            var directionToTarget = (_targetPosition - currentPosition).normalized;
             directionToTarget.z = 0f;
 
             transform.Translate(directionToTarget * (_speed * Time.deltaTime));

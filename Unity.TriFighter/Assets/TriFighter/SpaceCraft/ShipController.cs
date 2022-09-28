@@ -43,7 +43,7 @@ namespace TriFighter {
         
         private float _delay;
         private bool _shipActive;
-        private float MAX_DELAY = 1f;
+        private const float MAX_DELAY = 1f;
         private Vector3 _lastPosition;
 
         public bool IsShipActive => _shipActive;
@@ -96,7 +96,10 @@ namespace TriFighter {
         }
         
         public void Update() {
-            if (!_shipActive) return;
+            if (!_shipActive) 
+            {
+                //return;
+            }
             
             if (DEBUG != _movementController.DEBUG) _movementController.DEBUG = DEBUG;
             _lastPosition = transform.position;

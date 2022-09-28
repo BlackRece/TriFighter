@@ -8,7 +8,6 @@ using UnityEngine;
 namespace TriFighter.FuSM {
     public interface IMachine {
         void UpdatePerceptions(PerceptionData perceptionData);
-        ReactionData UpdateMachine();
         Vector2 Axis { get; }
     }
 
@@ -49,8 +48,43 @@ namespace TriFighter.FuSM {
             throw new NotImplementedException();
         }
 
-        public void Update(ReactionData reactionData) {
-            throw new NotImplementedException();
+        public ReactionData Update(ReactionData reactionData) {
+            _previousStates.Clear();
+
+            if (_activeStates.Count < 1)
+                return reactionData;
+
+            _previousStates = _activeStates;
+            _activeStates.Clear();
+            
+            var nonActiveStates = new List<IState>();
+            
+            foreach (var state in _states.Values) {
+                if (state.CalculateActivation(_perceptionData) >= state.ActivationLevel)
+                    _activeStates.Add(state);
+                else
+                    nonActiveStates.Add(state);
+            }
+
+            if (nonActiveStates.Count > 0) {
+                foreach (var nonActiveState in nonActiveStates) {
+                    nonActiveState.Exit(_reactionData);
+                    _reactionData = nonActiveState.GetReactionData;
+                } 
+            }
+
+            if (_activeStates.Count > 0) {
+                foreach (var activeState in _activeStates) {
+                    if(_previousStates.Contains(activeState))
+                        activeState.Update(_reactionData);
+                    else
+                        activeState.Enter(_reactionData);
+
+                    _reactionData = activeState.GetReactionData;
+                }
+            }
+
+            return _reactionData;
         }
 
         public void Enter(ReactionData reactionData) {
@@ -119,48 +153,11 @@ namespace TriFighter.FuSM {
                 _perceptionData.TriggerRange = _triggerRange;
             }
 
+            /*
             foreach (var state in _states.Values) {
                 state.CalculateActivation(_perceptionData);
             }
-        }
-
-        public ReactionData UpdateMachine() {
-            _previousStates.Clear();
-
-            if (_activeStates.Count < 1)
-                return _reactionData;
-
-            _previousStates = _activeStates;
-            _activeStates.Clear();
-            
-            var nonActiveStates = new List<IState>();
-            
-            foreach (var state in _states.Values) {
-                if (state.CalculateActivation(_perceptionData) >= state.ActivationLevel)
-                    _activeStates.Add(state);
-                else
-                    nonActiveStates.Add(state);
-            }
-
-            if (nonActiveStates.Count > 0) {
-                foreach (var nonActiveState in nonActiveStates) {
-                    nonActiveState.Exit(_reactionData);
-                    _reactionData = nonActiveState.GetReactionData;
-                } 
-            }
-
-            if (_activeStates.Count > 0) {
-                foreach (var activeState in _activeStates) {
-                    if(_previousStates.Contains(activeState))
-                        activeState.Update(_reactionData);
-                    else
-                        activeState.Enter(_reactionData);
-
-                    _reactionData = activeState.GetReactionData;
-                }
-            }
-
-            return _reactionData;
+            */
         }
     }
     

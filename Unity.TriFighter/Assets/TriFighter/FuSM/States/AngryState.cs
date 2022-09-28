@@ -9,7 +9,7 @@
             return base.CalculateActivation(perceptionData);
         }
         
-        public override void Update(ReactionData reactionData) {
+        public override ReactionData Update(ReactionData reactionData) {
             base.Update(reactionData);
         }
 
