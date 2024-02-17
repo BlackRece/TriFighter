@@ -1,13 +1,12 @@
-using System;
-
-using BlackRece.TriFighter2D.Movement;
-
 namespace BlackRece.TriFighter2D.Shooting {
     using UnityEngine;
+
+    using Health;
 
     [RequireComponent(typeof(Rigidbody2D))]
     public class Projectile : MonoBehaviour {
         private Rigidbody2D m_rigidbody2D;
+        private HealthManager.EntityTypes m_entityType;
         
         private bool m_isPaused;
         private float m_speed;
@@ -45,27 +44,37 @@ namespace BlackRece.TriFighter2D.Shooting {
         }
 
         private void OnTriggerStay2D(Collider2D other) {
-            if (other.gameObject.TryGetComponent<MovementController>(out var l_player))
-                return;
-            
+            if (other.gameObject.TryGetComponent(out HealthManager l_otherHealthManager)) {
+                if(m_entityType != l_otherHealthManager.EntityType)
+                    l_otherHealthManager.TakeDamage(m_damage);
+            }
+
             Destroy(gameObject);
         }
 
         public void Fire(ProjectileMetaData p_metaData) {
-            m_speed = p_metaData.speed;
-            m_direction = p_metaData.direction;
-            m_damage = p_metaData.damage;
+            m_speed = p_metaData.Speed;
+            m_direction = p_metaData.Direction;
+            m_damage = p_metaData.Damage;
+            m_entityType = p_metaData.EntityType;
+            
             m_lifeTimer = m_lifeTimeMax;
         }
         
         public struct ProjectileMetaData {
-            public float speed;
-            public float damage;
-            public Vector2 direction;
-            public ProjectileMetaData(float speed, float damage, Vector2 direction) {
-                this.speed = speed;
-                this.damage = damage;
-                this.direction = direction;
+            public float Speed;
+            public float Damage;
+            public Vector2 Direction;
+            public HealthManager.EntityTypes EntityType;
+            public ProjectileMetaData(
+                float a_speed,
+                float a_damage,
+                Vector2 a_direction,
+                HealthManager.EntityTypes a_entityType) {
+                Speed = a_speed;
+                Damage = a_damage;
+                Direction = a_direction;
+                EntityType = a_entityType;
             }
         }
     }

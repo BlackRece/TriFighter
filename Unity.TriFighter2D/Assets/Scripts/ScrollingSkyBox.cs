@@ -5,7 +5,7 @@ namespace BlackRece.TriFighter2D.SkyBox {
 
     public class ScrollingSkyBox : MonoBehaviour {
         [SerializeField] private float m_speed = 0.5f;
-        [SerializeField] private float m_spacing = 19.98f;
+        [SerializeField] private float m_spacing = 39.98f;
         private List<GameObject> m_skyBox;
         
 
