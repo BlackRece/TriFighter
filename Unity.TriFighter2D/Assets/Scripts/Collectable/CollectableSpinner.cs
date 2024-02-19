@@ -2,7 +2,7 @@ namespace BlackRece.TriFighter2D.Collectables {
 
     using UnityEngine;
 
-    public class PickUpSpinner : MonoBehaviour {
+    public class CollectableSpinner : MonoBehaviour {
         [SerializeField] private float m_speed = 5f;
         private GameObject m_sprite = null;
         
