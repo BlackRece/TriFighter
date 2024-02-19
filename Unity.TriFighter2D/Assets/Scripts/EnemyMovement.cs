@@ -1,33 +1,38 @@
-namespace BlackRece.TriFighter2D.EnemyMovement {
+namespace BlackRece.TriFighter2D.Movement.EnemyMovement {
 
     using UnityEngine;
+    
+    using Movement;
     using Shooting;
 
-    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(MotionController), typeof(Collider2D))]
     public class EnemyMovement : MonoBehaviour {
-        private Rigidbody2D m_rigidbody2D;
+        private MotionController m_motionController;
+        
         private float m_speed = 5f;
-        private Vector2 m_direction;
+        private Vector2 m_direction = Vector2.up;
 
-        private bool m_isPaused;
+        private bool m_isPaused = false;
         public bool IsPaused {
             get => m_isPaused;
             set => m_isPaused = value;
         }
         
         private void Awake() {
-            m_rigidbody2D = GetComponent<Rigidbody2D>();
+            m_motionController = GetComponent<MotionController>();
         }
         
         private void Start() {
-            m_isPaused = false;
-            m_direction = Vector2.up;
+            m_motionController.Direction = m_direction;
+            
+            m_motionController.Speed = m_speed;
         }
-
-        private void FixedUpdate() {
-            m_rigidbody2D.velocity = m_isPaused
-                ? Vector2.zero
-                : m_direction * m_speed;
+        
+        private void Update() {
+            if (m_isPaused)
+                return;
+            
+            m_motionController.Direction = m_direction;
         }
 
         private void OnCollisionEnter2D(Collision2D other) {

@@ -16,12 +16,11 @@ namespace BlackRece.TriFighter2D.Shooting {
         [SerializeField] private float m_shootCooldown = 0.5f;
         private float m_shootTimer;
         [SerializeField] private int m_maxClipSize = 30;
-        private int m_currentAmmo;
-        private bool m_isReloading;
+        private int m_currentAmmo = 0;
         [SerializeField] private float m_reloadCooldown = 2f;
         public float AmmoRatio => (float)m_currentAmmo / m_maxClipSize;
         
-        private bool m_isPaused;
+        private bool m_isPaused = false;
 
         public bool IsPaused {
             get => m_isPaused;
@@ -35,8 +34,6 @@ namespace BlackRece.TriFighter2D.Shooting {
         }
 
         private void Start() {
-            IsPaused = false;
-
             m_currentAmmo = m_maxClipSize;
             EventManager.InvokeEvent(EventIDs.OnAddAmmo, AmmoRatio);
         }

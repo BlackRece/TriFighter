@@ -65,7 +65,6 @@ namespace BlackRece.TriFighter2D.UI.HUD {
         
         private void AddModifier(string a_modifierName) {
             var l_modifier = Instantiate(m_modifierPrefab, m_modifiersPanel.transform);
-            //l_modifier.GetComponentInChildren<Text>().text = a_modifierName;
             m_modifiers.Add(l_modifier);
         }
 

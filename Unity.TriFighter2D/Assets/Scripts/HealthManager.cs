@@ -38,7 +38,8 @@ namespace BlackRece.TriFighter2D.Health {
             
             switch (EntityType) {
                 case EntityTypes.Player:
-                    EventManager.AddEvent<float>(EventIDs.OnUpdateHealthBar);
+                    //already added in HUDController.Awake()
+                    //EventManager.AddEvent<float>(EventIDs.OnUpdateHealthBar);
                     break;
                 case EntityTypes.Enemy:
                     break;

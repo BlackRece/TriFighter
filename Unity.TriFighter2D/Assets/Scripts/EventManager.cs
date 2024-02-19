@@ -88,8 +88,8 @@ namespace BlackRece.TriFighter2D.Events {
         public static void RemoveListener<T>(string a_eventName, Action<T> a_listener) {
             if (m_eventData.TryGetValue(a_eventName, out EventData l_eventData))
                 l_eventData.RemoveListener(a_listener);
-            else
-                throw new KeyNotFoundException($"{a_eventName} not found.");
+            // else
+            //     throw new KeyNotFoundException($"{a_eventName} not found.");
         }
         
         public static void InvokeEvent<T>(string a_eventName, T a_data) {
