@@ -35,9 +35,12 @@ namespace BlackRece.TriFighter2D.MapGen {
 
         [Header("Tile Pallet")] 
         [SerializeField] private TileMeta[] m_tilePallet = null;
+        [SerializeField] private TileBase m_ruleTile = null;
         
         [Header("Generation Settings")]
         [SerializeField] private Vector2Int m_mapSize = new Vector2Int(40,22);
+
+        [SerializeField, Range(5, 25)] private int m_minPathWidth = 10;
         
         // Chunking Info
         [SerializeField] private int m_chunkMultiplier = 3;
@@ -51,6 +54,8 @@ namespace BlackRece.TriFighter2D.MapGen {
             var l_chunkSize = m_mapSize;
             l_chunkSize.x *= m_chunkMultiplier;
             m_chunkSize = l_chunkSize;
+            
+            m_minPathWidth = Mathf.Clamp(m_minPathWidth, 8, m_mapSize.y - 2);
         }
 
         private void Start() {
@@ -61,14 +66,23 @@ namespace BlackRece.TriFighter2D.MapGen {
             }
             
             // populate chunk buffers
-            foreach(Chunk l_chunk in m_backChunks) 
-                l_chunk.GenerateRandom();
-            foreach(Chunk l_chunk in m_foreChunks)
-                l_chunk.GenerateOutline();
+            Vector3Int l_startPosFront = default;
+            l_startPosFront = m_foreChunks[0].GenerateOutline(l_startPosFront);
+            l_startPosFront = m_foreChunks[1].GenerateTunnelEntrance(l_startPosFront, m_minPathWidth);
+            l_startPosFront = m_foreChunks[2].GenerateTerrain(l_startPosFront, m_minPathWidth);
+            // foreach (Chunk l_chunk in m_foreChunks)  
+            //     l_startPosFront = l_chunk.GenerateTerrain(l_startPosFront, m_minPathWidth);
+            
+            Vector3Int l_startPosBack = default;
+            foreach (Chunk l_chunk in m_backChunks)
+                l_startPosBack = l_chunk.GenerateOutline(l_startPosBack);
+            // l_startPosBack = m_backChunks[0].GenerateFill(l_startPosBack);
+            // l_startPosBack = m_backChunks[1].GenerateRandom(l_startPosBack);
+            // l_startPosBack = m_backChunks[2].GenerateOutline(l_startPosBack);
             
             // Blit chunks buffers to the tilemaps
-            PasteChunks(m_background, m_backChunks);
             PasteChunks(m_foreground, m_foreChunks);
+            PasteChunks(m_background, m_backChunks);
         }
         
         #endregion
@@ -93,7 +107,8 @@ namespace BlackRece.TriFighter2D.MapGen {
 
         private void PasteChunk(Tilemap a_tilemap, Chunk a_chunk, Vector3Int a_offset = default) {
             foreach(var l_tile in a_chunk.ChunkData) 
-                a_tilemap.SetTile(l_tile.Key + a_offset, GetTile(l_tile.Value));
+                a_tilemap.SetTile(l_tile.Key + a_offset, m_ruleTile);
+                //a_tilemap.SetTile(l_tile.Key + a_offset, GetTile(l_tile.Value));
         }
         
         private void PasteChunks(Tilemap a_tilemap, List<Chunk> a_chunks) {
