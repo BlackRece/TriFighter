@@ -32,6 +32,7 @@ namespace BlackRece.TriFighter2D.MapGen {
         [Header("Tilemaps")]
         [SerializeField] private Tilemap m_background = null;   // non-interactable
         [SerializeField] private Tilemap m_foreground = null;   // interactable
+        [SerializeField] private Tilemap m_debugMap = null;    // debug
 
         [Header("Tile Pallet")] 
         [SerializeField] private TileMeta[] m_tilePallet = null;
@@ -42,11 +43,28 @@ namespace BlackRece.TriFighter2D.MapGen {
 
         [SerializeField, Range(5, 25)] private int m_minPathWidth = 10;
         
+        [Header("Scroll Settings")]
+        [SerializeField] private float m_backScrollSpeed = .5f;
+        [SerializeField] private float m_foreScrollSpeed = 2f;
+        [SerializeField] private Vector3 m_origin = Vector3.zero;
+        
+        private float m_maxScroll => (m_mapSize.x * m_chunkMultiplier) - m_mapSize.x;
+        private float m_minScroll => -(m_mapSize.x / 2);
+        
         // Chunking Info
         [SerializeField] private int m_chunkMultiplier = 3;
         [SerializeField] private Vector2Int m_chunkSize = new Vector2Int(10, 10);
         private List<Chunk> m_backChunks = new List<Chunk>();
         private List<Chunk> m_foreChunks = new List<Chunk>();
+        private Chunk m_debugChunk;
+        private Vector3Int m_foreStartPos;
+        
+        private bool m_isPaused;
+
+        public bool IsPaused {
+            get => m_isPaused;
+            set => m_isPaused = value;
+        }
 
         #region Unity Functions
 
@@ -59,32 +77,58 @@ namespace BlackRece.TriFighter2D.MapGen {
         }
 
         private void Start() {
+            IsPaused = false;
+            
             // create chunk buffers
+            m_debugChunk = new Chunk(m_mapSize);
             for(int i = 0; i < m_chunkMultiplier; i++) {
                 m_backChunks.Add(new Chunk(m_mapSize));
                 m_foreChunks.Add(new Chunk(m_mapSize));
             }
             
             // populate chunk buffers
-            Vector3Int l_startPosFront = default;
-            l_startPosFront = m_foreChunks[0].GenerateOutline(l_startPosFront);
-            l_startPosFront = m_foreChunks[1].GenerateTunnelEntrance(l_startPosFront, m_minPathWidth);
-            l_startPosFront = m_foreChunks[2].GenerateTerrain(l_startPosFront, m_minPathWidth);
-            // foreach (Chunk l_chunk in m_foreChunks)  
-            //     l_startPosFront = l_chunk.GenerateTerrain(l_startPosFront, m_minPathWidth);
+            m_foreStartPos = m_foreChunks[0].GenerateOutline(default);
+            m_foreStartPos = m_foreChunks[1].GenerateTunnelEntrance(m_foreStartPos, m_minPathWidth);
+            m_foreStartPos = m_foreChunks[2].GenerateTerrain(m_foreStartPos, m_minPathWidth);
             
             Vector3Int l_startPosBack = default;
             foreach (Chunk l_chunk in m_backChunks)
                 l_startPosBack = l_chunk.GenerateOutline(l_startPosBack);
-            // l_startPosBack = m_backChunks[0].GenerateFill(l_startPosBack);
-            // l_startPosBack = m_backChunks[1].GenerateRandom(l_startPosBack);
-            // l_startPosBack = m_backChunks[2].GenerateOutline(l_startPosBack);
             
             // Blit chunks buffers to the tilemaps
             PasteChunks(m_foreground, m_foreChunks);
             PasteChunks(m_background, m_backChunks);
         }
-        
+
+        private void Update() {
+            if (m_isPaused)
+                return;
+            
+            m_foreground.transform.Translate(Vector3.left * (m_foreScrollSpeed * Time.deltaTime));
+            m_background.transform.Translate(Vector3.left * (m_backScrollSpeed * Time.deltaTime));
+
+            if (m_foreground.transform.position.x <= -m_maxScroll) {
+                // debug
+                m_debugMap.ClearAllTiles();
+                m_debugChunk.CopyChunk(m_foreChunks[2]);
+                PasteChunk(m_debugMap, m_debugChunk);
+                m_debugMap.RefreshAllTiles();
+                
+                // shift chunks
+                m_foreChunks[0].CopyChunk(m_foreChunks[2]);
+                m_foreChunks[1].GenerateTerrain(m_foreChunks[0].EndPosition, m_minPathWidth);
+                m_foreChunks[2].GenerateTerrain(m_foreChunks[1].EndPosition, m_minPathWidth);
+                
+                PasteChunks(m_foreground, m_foreChunks);
+                
+                // reset position
+                m_foreground.transform.position = m_origin;
+            }
+
+            if (m_background.transform.position.x <= -m_maxScroll)
+                m_background.transform.position = new Vector3(m_origin.x - m_minScroll, m_origin.y);
+        }
+
         #endregion
 
         #region TilePallet Functions
@@ -101,19 +145,18 @@ namespace BlackRece.TriFighter2D.MapGen {
                 : null;
         }
         
-        #endregion
+        #endregion  // TilePallet Functions
 
         #region TileMap Functions
 
         private void PasteChunk(Tilemap a_tilemap, Chunk a_chunk, Vector3Int a_offset = default) {
             foreach(var l_tile in a_chunk.ChunkData) 
                 a_tilemap.SetTile(l_tile.Key + a_offset, m_ruleTile);
-                //a_tilemap.SetTile(l_tile.Key + a_offset, GetTile(l_tile.Value));
         }
         
         private void PasteChunks(Tilemap a_tilemap, List<Chunk> a_chunks) {
             a_tilemap.ClearAllTiles();
-            
+
             Vector3Int l_offset = Vector3Int.zero;
             l_offset.x = m_mapSize.x * m_chunkMultiplier;
 
@@ -121,8 +164,10 @@ namespace BlackRece.TriFighter2D.MapGen {
                 l_offset.x = index * m_mapSize.x;
                 PasteChunk(a_tilemap, a_chunks[index], l_offset);
             }
+            
+            a_tilemap.RefreshAllTiles();
         }
 
-        #endregion
+        #endregion  // TileMap Functions
     }
 }

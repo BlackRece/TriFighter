@@ -31,13 +31,17 @@ namespace BlackRece.TriFighter2D.Events {
         public const string OnUIShootDirectionClick = "OnUIShootDirectionClick";
         public const string OnUIShootRangeChangeEvent = "OnUIShootRangeChangeEvent";
         
-        // UI
+        // UI - HUD
         public const string OnUpdateHealthBar = "OnUpdateHealthBar";
         public const string OnUpdateExperienceBar = "OnUpdateExperienceBar";
         public const string OnUpdateShieldBar = "OnUpdateShieldBar";
         
         public const string OnDelAmmo = "OnDelAmmo";
         public const string OnAddAmmo = "OnAddAmmo";
+        
+        // Game - Enemy
+        public const string OnDeath = "OnDeath";
+        public const string OnSpawnEnemy = "OnSpawnEnemy";
     }
     
     public class EventManager : ScriptableObject {

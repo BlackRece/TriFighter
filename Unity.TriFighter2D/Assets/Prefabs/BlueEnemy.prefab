@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 7375791473531789124}
   - component: {fileID: 7612875954604012033}
   - component: {fileID: 1695628757853042005}
-  - component: {fileID: 5569753494451488281}
   - component: {fileID: 5525998948355662045}
   - component: {fileID: 7627614864174255394}
   - component: {fileID: -4597139999906807765}
   - component: {fileID: 1166487694448776627}
   - component: {fileID: 776599328711795998}
+  - component: {fileID: -1663879663789861861}
+  - component: {fileID: 5763477628356857880}
   m_Layer: 6
   m_Name: BlueEnemy
   m_TagString: Untagged
@@ -103,22 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43de6ae790ca6a84a87e8c8af2a544c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5569753494451488281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3899074086037124938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b0c3e85c77f3844b886a77ad032f79c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_bulletPrefab: {fileID: 1791617224955133642, guid: ae6915816bbfc9140b3b6634a5e989d5, type: 3}
-  m_bulletSpawnPoint: {fileID: 0}
-  m_bulletSpeed: 5
-  m_shootCooldown: 1
 --- !u!114 &5525998948355662045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,6 +150,7 @@ MonoBehaviour:
   m_spawnRadius: 1
   m_collectableType: 0
   m_rewardAmount: 10
+  m_repeatSpawn: 0
 --- !u!50 &1166487694448776627
 Rigidbody2D:
   serializedVersion: 4
@@ -227,3 +213,35 @@ CircleCollider2D:
   m_Offset: {x: -0.02, y: 0}
   serializedVersion: 2
   m_Radius: 1.7055218
+--- !u!114 &-1663879663789861861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3899074086037124938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8f95dea771ce6f4399f9c85d1b91add, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_bulletSpawnPoint: {fileID: 0}
+  m_bulletSpeed: 5
+  m_bulletDamage: 1
+  m_shootCooldown: 2
+  m_maxClipSize: 30
+  m_reloadCooldown: 2
+--- !u!114 &5763477628356857880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3899074086037124938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7dbe6856a169f8469eab58d861c9e00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_prefab: {fileID: 1791617224955133642, guid: ae6915816bbfc9140b3b6634a5e989d5, type: 3}
+  m_poolSize: 10

@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1308179732329716357}
+  - component: {fileID: 3729180364699800689}
+  - component: {fileID: 355869857969534252}
+  - component: {fileID: 489766814624429809}
   - component: {fileID: 7430717026432686659}
   - component: {fileID: 4344519305118815412}
-  - component: {fileID: 3729180364699800689}
   - component: {fileID: 624987490521238188}
   m_Layer: 0
   m_Name: EnemyBullet
@@ -35,6 +37,44 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3729180364699800689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791617224955133642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c28f1944b0a9a914fb10ee4040996068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_lifeTimeMax: 5
+--- !u!114 &355869857969534252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791617224955133642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7501f13fcf9096b44a2c904fef339ba6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_speed: 5
+--- !u!114 &489766814624429809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791617224955133642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c320fe03390ddaa429b4d091f81be118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &7430717026432686659
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -114,19 +154,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3729180364699800689
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791617224955133642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c28f1944b0a9a914fb10ee4040996068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_lifeTimeMax: 5
 --- !u!58 &624987490521238188
 CircleCollider2D:
   m_ObjectHideFlags: 0

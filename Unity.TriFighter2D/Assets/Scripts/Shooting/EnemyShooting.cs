@@ -32,7 +32,7 @@ namespace BlackRece.TriFighter2D.Shooting {
         }
 
         private void Update() {
-            if (m_isPaused)
+            if (IsPaused)
                 return;
 
             if (m_shootTimer > 0f)
@@ -45,7 +45,8 @@ namespace BlackRece.TriFighter2D.Shooting {
         private void Shoot() {
             m_shootTimer = m_shootCooldown;
 
-            var l_bullet = Instantiate(m_bulletPrefab, m_bulletSpawnPoint.position, Quaternion.identity);
+            var l_bullet = 
+                Instantiate(m_bulletPrefab, m_bulletSpawnPoint.position, Quaternion.identity);
             var l_projectile = l_bullet.GetComponent<Projectile>();
             var l_data = new Projectile.ProjectileMetaData {
                 Speed = m_bulletSpeed,

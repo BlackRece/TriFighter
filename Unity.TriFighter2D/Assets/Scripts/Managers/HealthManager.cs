@@ -24,6 +24,9 @@ namespace BlackRece.TriFighter2D.Health {
                 m_currentHealth = Mathf.Clamp(value, 0f, m_maxHealth);
                 if(m_entityType == EntityTypes.Player && EventManager.HasEvent(EventIDs.OnUpdateHealthBar))
                     EventManager.InvokeEvent(EventIDs.OnUpdateHealthBar, HealthRatio);
+                
+                if (m_currentHealth <= 0f && EventManager.HasEvent(EventIDs.OnDeath))
+                    EventManager.InvokeEvent(EventIDs.OnDeath, gameObject);
             }
         }
 
