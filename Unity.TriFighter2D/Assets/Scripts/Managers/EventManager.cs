@@ -14,6 +14,7 @@ namespace BlackRece.TriFighter2D.Events {
     
     // collection of string constants for event names
     public static class EventIDs {
+        private static string _onSpawnBoss;
         public const string OnTileEnter = "OnTileEnter";
         public const string OnTileClick = "OnTileClick";
 
@@ -40,8 +41,12 @@ namespace BlackRece.TriFighter2D.Events {
         public const string OnAddAmmo = "OnAddAmmo";
         
         // Game - Enemy
-        public const string OnDeath = "OnDeath";
-        public const string OnSpawnEnemy = "OnSpawnEnemy";
+        public const string OnSpawnMinion = "OnSpawnMinion";
+        public const string OnMinionDeath = "OnMinionDeath";
+        public const string OnSpawnBoss = "OnSpawnBoss"; 
+        public const string OnBossDeath = "OnBossDeath";
+        public const string OnReload = "OnReload";
+        public const string OnEnemyOutOfBounds = "OnEnemyOutOfBounds";
     }
     
     public class EventManager : ScriptableObject {
@@ -86,21 +91,19 @@ namespace BlackRece.TriFighter2D.Events {
             if (m_eventData.TryGetValue(a_eventName, out EventData l_eventData))
                 l_eventData.AddListener<T>(a_listener);
             else
-                throw new KeyNotFoundException($"{a_eventName} not found.");
+                Debug.LogWarning($"{a_eventName} not found.");
         }
         
         public static void RemoveListener<T>(string a_eventName, Action<T> a_listener) {
             if (m_eventData.TryGetValue(a_eventName, out EventData l_eventData))
                 l_eventData.RemoveListener(a_listener);
-            // else
-            //     throw new KeyNotFoundException($"{a_eventName} not found.");
         }
         
         public static void InvokeEvent<T>(string a_eventName, T a_data) {
             if (m_eventData.TryGetValue(a_eventName, out EventData l_eventData))
                 l_eventData.InvokeEvent(a_data);
             else
-                throw new KeyNotFoundException($"{a_eventName} not found.");
+                Debug.LogWarning($"{a_eventName} not found. (parent: {a_data})");
         }
         
         public static bool HasEvent(string a_eventName) => 

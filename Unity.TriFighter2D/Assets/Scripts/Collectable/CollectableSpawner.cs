@@ -52,7 +52,42 @@ namespace BlackRece.TriFighter2D.Collectables {
             var l_collectable = Instantiate(m_collectablePrefab.gameObject, l_spawnPosition, Quaternion.identity);
             l_collectable
                 .GetComponent<CollectablePickUp>()
+                //.AddComponent<CollectablePickUp>()
                 .Init(l_type, m_rewardAmount);
+        }
+        
+        private void SpawnCollectable_V2() {
+            // set spawn position
+            Vector2 l_spawnPosition = (Vector2) transform.position + RNG.insideUnitCircle * m_spawnRadius;
+            
+            // set collectable type
+            var l_type = m_collectableType == CollectableType.None 
+                ? (CollectableType)RNG.Range(1, 3) 
+                : m_collectableType;
+            
+            /*
+             * what makes more sense?
+             * 1. Instantiate the prefab and then set the sprite and amount
+             * 2. Instantiate the prefab that already has a sprite and set the amount
+             */
+            // collectable prefab must have a sprite renderer
+            var l_collectable = Instantiate(m_collectablePrefab.gameObject, l_spawnPosition, Quaternion.identity);
+
+            switch (m_collectableType) {
+                case CollectableType.Health:
+                    l_collectable
+                        .AddComponent<HealthPickup>();
+                        //.Init(l_type, m_rewardAmount);
+                    break;
+                case CollectableType.Ammo:
+                    break;
+                case CollectableType.Experience:
+                    break;
+            }
+            
+            /*l_collectable
+                .GetComponent<CollectablePickUp>()
+                .Init(l_type, m_rewardAmount);*/
         }
     }
 }

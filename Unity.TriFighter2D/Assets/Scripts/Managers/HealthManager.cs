@@ -9,7 +9,8 @@ namespace BlackRece.TriFighter2D.Health {
         public enum EntityTypes {
             None = 0,
             Player = 1,
-            Enemy = 2
+            Minion = 2,
+            Boss = 3
         }
         
         [SerializeField] private float m_maxHealth = 100f;
@@ -18,15 +19,24 @@ namespace BlackRece.TriFighter2D.Health {
         [SerializeField] private EntityTypes m_entityType = EntityTypes.None;
         public EntityTypes EntityType => m_entityType;
         
-        private float CurrentHealth {
+        public float CurrentHealth {
             get => m_currentHealth;
             set {
                 m_currentHealth = Mathf.Clamp(value, 0f, m_maxHealth);
+                
                 if(m_entityType == EntityTypes.Player && EventManager.HasEvent(EventIDs.OnUpdateHealthBar))
                     EventManager.InvokeEvent(EventIDs.OnUpdateHealthBar, HealthRatio);
-                
-                if (m_currentHealth <= 0f && EventManager.HasEvent(EventIDs.OnDeath))
-                    EventManager.InvokeEvent(EventIDs.OnDeath, gameObject);
+
+                if (m_currentHealth <= 0f) {
+                    string l_eventID = EntityType switch {
+                        EntityTypes.Minion => EventIDs.OnMinionDeath,
+                        EntityTypes.Boss => EventIDs.OnBossDeath,
+                        _ => string.Empty   //EventIDs.OnPlayerDeath
+                    };
+                    
+                    if (EventManager.HasEvent(l_eventID))
+                        EventManager.InvokeEvent(l_eventID, gameObject);
+                }
             }
         }
 
@@ -35,20 +45,9 @@ namespace BlackRece.TriFighter2D.Health {
         private void Awake() {
             Init(EntityType);
         }
-        
-        private void Init(EntityTypes a_entityType) {
+
+        public void Init(EntityTypes a_entityType) {
             m_entityType = a_entityType;
-            
-            switch (EntityType) {
-                case EntityTypes.Player:
-                    //already added in HUDController.Awake()
-                    //EventManager.AddEvent<float>(EventIDs.OnUpdateHealthBar);
-                    break;
-                case EntityTypes.Enemy:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(a_entityType), a_entityType, null);
-            }
             
             CurrentHealth = m_maxHealth;
         }

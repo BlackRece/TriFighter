@@ -5,8 +5,8 @@ namespace BlackRece.TriFighter2D.Movement {
     public class MotionController : MonoBehaviour {
         private Rigidbody2D m_rigidbody2D = null;
         
-        [SerializeField] private float m_speed = 5f;
-        public float Speed {
+        [SerializeField] private Vector2 m_speed = Vector2.one;
+        public Vector2 Speed {
             get => m_speed;
             set => m_speed = value;
         }

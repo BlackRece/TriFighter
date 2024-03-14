@@ -1,15 +1,17 @@
 namespace BlackRece.TriFighter2D.Shooting {
 
-    using UnityEngine;
+    using System;
     using System.Collections.Generic;
+    
+    using UnityEngine;
     
     using Health;
 
+    [Obsolete ("This class is deprecated, use ShootingController instead.")]
     public class EnemyShooting : MonoBehaviour {
         [SerializeField] private GameObject m_bulletPrefab = null;
-        private List<GameObject> m_bullets;
         [SerializeField] private Transform m_bulletSpawnPoint = null;
-        [SerializeField] private float m_bulletSpeed = 5f;
+        [SerializeField] private Vector2 m_bulletSpeed = new Vector2(5f, 0f);
         [SerializeField] private float m_shootCooldown = 0.5f;
         
         private float m_shootTimer;
@@ -21,7 +23,7 @@ namespace BlackRece.TriFighter2D.Shooting {
         }
 
         private void Awake() {
-            m_bullets = new List<GameObject>();
+            new List<GameObject>();
             if (m_bulletPrefab == null)
                 Debug.LogError("Bullet prefab is not set!");
         }
@@ -47,12 +49,12 @@ namespace BlackRece.TriFighter2D.Shooting {
 
             var l_bullet = 
                 Instantiate(m_bulletPrefab, m_bulletSpawnPoint.position, Quaternion.identity);
-            var l_projectile = l_bullet.GetComponent<Projectile>();
-            var l_data = new Projectile.ProjectileMetaData {
+            var l_projectile = l_bullet.GetComponent<ProjectileController>();
+            var l_data = new ProjectileController.ProjectileMetaData {
                 Speed = m_bulletSpeed,
                 Damage = 1f,
                 Direction = Vector2.left,
-                EntityType = HealthManager.EntityTypes.Enemy
+                EntityType = HealthManager.EntityTypes.Minion
             };
             l_projectile.Fire(l_data);
 

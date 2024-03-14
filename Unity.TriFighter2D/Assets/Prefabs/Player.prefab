@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 1862298798750168350}
   - component: {fileID: -5612554663544759067}
   - component: {fileID: 7863180127731975646}
-  - component: {fileID: 6847578694407665403}
   - component: {fileID: -7958661017459810314}
+  - component: {fileID: 343858096987390084}
   - component: {fileID: 4425093081456559530}
   m_Layer: 3
   m_Name: Player
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b1594e640ab8d42aecdb9a78c51040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 5
+  m_speed: {x: 3, y: 5}
 --- !u!114 &4782307397372097840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,13 +146,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f95dea771ce6f4399f9c85d1b91add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_bulletPrefab: {fileID: 1791617224955133642, guid: 791dbcce2d285b4458ec9727c462da63, type: 3}
   m_bulletSpawnPoint: {fileID: 703145132003090585}
-  m_bulletSpeed: 15
+  m_bulletSpeed: {x: 0, y: 0}
   m_bulletDamage: 100
+  m_bulletLifeTime: 10
+  m_reloadCooldown: 2
   m_shootCooldown: 0.5
   m_maxClipSize: 30
-  m_reloadCooldown: 2
 --- !u!114 &1862298798750168350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7501f13fcf9096b44a2c904fef339ba6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 5
+  m_speed: {x: 1, y: 1}
 --- !u!70 &7863180127731975646
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -216,19 +216,6 @@ CapsuleCollider2D:
   m_Offset: {x: -0.09093642, y: 0}
   m_Size: {x: 0.81812716, y: 2}
   m_Direction: 0
---- !u!114 &6847578694407665403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1442996420250168308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7501f13fcf9096b44a2c904fef339ba6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_speed: 5
 --- !u!114 &-7958661017459810314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,6 +230,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_baseExperience: 100
   m_experienceMultiplier: 1.5
+--- !u!114 &343858096987390084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442996420250168308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a97f4f0860740df95120a765632a253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4425093081456559530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_prefab: {fileID: 1791617224955133642, guid: 791dbcce2d285b4458ec9727c462da63, type: 3}
   m_poolSize: 10
+  m_poolName: ObjectPool
 --- !u!1 &7094700187276243256
 GameObject:
   m_ObjectHideFlags: 0

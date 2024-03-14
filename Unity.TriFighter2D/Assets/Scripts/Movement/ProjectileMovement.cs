@@ -5,7 +5,7 @@ namespace BlackRece.TriFighter2D.Movement {
     public class ProjectileMovement : MonoBehaviour {
         private MotionController m_motionController;
 
-        private float m_speed = 0f;
+        private Vector2 m_speed = Vector2.zero;
         private Vector2 m_direction = Vector2.zero;
 
         private bool m_isPaused;
@@ -22,7 +22,7 @@ namespace BlackRece.TriFighter2D.Movement {
         }
 
         private void Update() {
-            if (m_isPaused)
+            if (IsPaused)
                 return;
 
             m_motionController.Direction = m_direction;
@@ -30,7 +30,7 @@ namespace BlackRece.TriFighter2D.Movement {
 
         #endregion
 
-        public void Init(float a_speed, Vector2 a_direction) {
+        public void Init(Vector2 a_speed, Vector2 a_direction) {
             m_isPaused = false;
 
             m_speed = a_speed;

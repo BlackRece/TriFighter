@@ -5,7 +5,7 @@ namespace BlackRece.TriFighter2D.Movement {
 
     [RequireComponent(typeof(MotionController))]
     public class CollectableMovement : MonoBehaviour {
-        [SerializeField] private float m_speed = 5f;
+        [SerializeField] private Vector2 m_speed = Vector2.one;
         [SerializeField] private float m_wanderRadius = 10f;
 
         private Vector2 m_direction = Vector2.zero;
@@ -25,8 +25,9 @@ namespace BlackRece.TriFighter2D.Movement {
 
         private void Start() {
             m_direction = RNG.insideUnitCircle;
-            m_motionController.Direction = m_direction;
+            m_speed *= 5f;
             
+            //m_motionController.Direction = m_direction;
             m_motionController.Speed = m_speed;
         }
 

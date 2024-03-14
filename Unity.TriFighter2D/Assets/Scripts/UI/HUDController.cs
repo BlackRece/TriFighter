@@ -3,6 +3,8 @@ namespace BlackRece.TriFighter2D.UI.HUD {
 
     using UnityEngine;
     using UnityEngine.UI;
+    
+    using TMPro;
 
     using Events;
 
@@ -17,6 +19,7 @@ namespace BlackRece.TriFighter2D.UI.HUD {
         
         [SerializeField] private GameObject m_weaponInfoPanel;
         [SerializeField] private GameObject m_ammoSegmentPrefab;
+        [SerializeField] private TMP_Text m_reloadText;
         private List<GameObject> m_ammoSegments;
         private int m_currentAmmo;
         private const int m_maxAmmo = 30;   // Const due to UI design limitation
@@ -31,6 +34,7 @@ namespace BlackRece.TriFighter2D.UI.HUD {
             
             EventManager.AddEvent<int>(EventIDs.OnDelAmmo);
             EventManager.AddEvent<float>(EventIDs.OnAddAmmo);
+            EventManager.AddEvent<bool>(EventIDs.OnReload);
         }
         
         private void OnEnable() 
@@ -41,8 +45,9 @@ namespace BlackRece.TriFighter2D.UI.HUD {
             
             EventManager.AddListener<int>(EventIDs.OnDelAmmo, DelAmmoSegments);
             EventManager.AddListener<float>(EventIDs.OnAddAmmo, AddAmmoSegments);
+            EventManager.AddListener<bool>(EventIDs.OnReload, ReloadAmmo);
         }
-        
+
         private void OnDisable() 
         {
             EventManager.RemoveListener<float>(EventIDs.OnUpdateHealthBar, UpdateHealthBar);
@@ -51,6 +56,7 @@ namespace BlackRece.TriFighter2D.UI.HUD {
             
             EventManager.RemoveListener<int>(EventIDs.OnDelAmmo, DelAmmoSegments);
             EventManager.RemoveListener<float>(EventIDs.OnAddAmmo, AddAmmoSegments);
+            EventManager.RemoveListener<bool>(EventIDs.OnReload, ReloadAmmo);
         }
         
         private void Start() {
@@ -105,6 +111,9 @@ namespace BlackRece.TriFighter2D.UI.HUD {
             DelAmmoSegments(l_amount);
         }
         
+        private void ReloadAmmo(bool a_isReloading) => 
+            m_reloadText.gameObject.SetActive(a_isReloading);
+
         #endregion
 
     }
